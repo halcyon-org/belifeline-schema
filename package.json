@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "tsp compile specs --watch & pnpm run _doc",
-    "compile": "tsp compile specs && sh ./scripts/compile.sh",
+    "dev": "pnpm run compile & tsp compile specs --watch & pnpm run _doc",
+    "compile": "tsp compile specs && tsx ./scripts/compile.ts",
     "_doc": "redocly preview-docs schema/@typespec/openapi3/openapi.yaml",
     "bundle": "pnpm run compile && redocly build-docs schema/@typespec/openapi3/openapi.yaml --output bundled/index.html",
     "format": "tsp format specs"
@@ -18,6 +18,9 @@
   },
   "private": true,
   "devDependencies": {
-    "@redocly/cli": "^1.13.0"
+    "@redocly/cli": "^1.13.0",
+    "@types/node": "^20.12.12",
+    "tsx": "^4.11.0",
+    "typescript": "^5.4.5"
   }
 }
