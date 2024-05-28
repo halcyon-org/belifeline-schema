@@ -23,8 +23,8 @@ namespace BeLifeline.Admin {
     };
     @route("/{algorithm_id}")
     @delete
-    delete(@path algorithm_id: algorithm_id): {
-      delete_algorithm_id: algorithm_id;
+    delete(@path algorithm_id: algorithmId): {
+      delete_algorithm_id: algorithmId;
     };
   }
 

@@ -17,12 +17,12 @@ enum Versions {
   latest: "lastest",
 }
 
-scalar algorithm_id extends string;
+scalar algorithmId extends string;
 
 model AlgorithmInfomation {
   @visibility("read", "query", "update", "delete")
   @doc("From Admin API")
-  algorithm_id: algorithm_id;
+  algorithm_id: algorithmId;
 
   algorithm_name: string;
   algorithm_description: string;
@@ -51,9 +51,9 @@ namespace BeLifeline.Algorithm {
   interface EachAlgorithm {
     @put
     update(
-      @path algorithm_id: algorithm_id,
+      @path algorithm_id: algorithmId,
       update_algorithm: AlgorithmInfomation,
     ): AlgorithmInfomation;
-    @get get(@path algorithm_id: algorithm_id): AlgorithmInfomation;
+    @get get(@path algorithm_id: algorithmId): AlgorithmInfomation;
   }
 }
