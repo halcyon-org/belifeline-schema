@@ -18,6 +18,13 @@ enum Versions {
 }
 
 scalar algorithmId extends string;
+scalar algorithmDataId extends string;
+scalar algorithmScale extends float32;
+enum DataType {
+  image,
+  csv,
+  json,
+}
 
 model AlgorithmInfomation {
   @visibility("read", "query", "update", "delete")
@@ -27,6 +34,8 @@ model AlgorithmInfomation {
   algorithm_name: string;
   algorithm_description: string;
   need_external: ExtInfoId[];
+  algorithm_scales: algorithmScale[];
+  algorithm_data_ids: algorithmDataId[];
 
   @visibility("read", "query")
   first_entry_at: utcDateTime;
@@ -38,13 +47,30 @@ model AlgorithmInfomation {
   last_updated_at: utcDateTime;
 }
 
+model AlgorithmData {
+  algorithm_id: algorithmId;
+
+  @visibility("read", "query")
+  algorithm_data_id: algorithmDataId;
+
+  algorithm_scale: algorithmScale;
+  content_type: DataType;
+  content: bytes;
+
+  @visibility("read", "query")
+  entry_at: utcDateTime;
+
+  @visibility("read", "query")
+  target_at: utcDateTime;
+}
+
 @route("/algorithm")
 @tag("Algorithm")
 @doc("Algorithm API")
 @useAuth(BearerAuth)
 namespace BeLifeline.Algorithm {
   interface Algorithm {
-    @get list(@query limit?: numeric): AlgorithmInfomation[];
+    @get list(@query limit?: int32): AlgorithmInfomation[];
   }
 
   @route("/{algorithm_id}")
@@ -55,5 +81,20 @@ namespace BeLifeline.Algorithm {
       update_algorithm: AlgorithmInfomation,
     ): AlgorithmInfomation;
     @get get(@path algorithm_id: algorithmId): AlgorithmInfomation;
+  }
+
+  @route("/{algorithm_id}/data")
+  interface EachAlgorithmData {
+    @get
+    get(
+      @path algorithm_id: algorithmId,
+      @query scale: algorithmScale,
+    ): AlgorithmData;
+    @put
+    update(
+      @path algorithm_id: algorithmId,
+      @query scale: algorithmScale,
+      update_data: AlgorithmData,
+    ): AlgorithmData;
   }
 }
