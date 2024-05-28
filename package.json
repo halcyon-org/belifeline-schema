@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "tsp compile specs --watch & pnpm run doc",
+    "dev": "tsp compile specs --watch & pnpm run _doc",
     "compile": "tsp compile specs",
-    "doc": "redocly preview-docs schema/@typespec/openapi3/openapi.yaml",
-    "bundle": "pnpm run compile && redocly build-docs schema/@typespec/openapi3/openapi.yaml --output bundled/index.html"
+    "_doc": "redocly preview-docs schema/@typespec/openapi3/openapi.yaml",
+    "bundle": "pnpm run compile && redocly build-docs schema/@typespec/openapi3/openapi.yaml --output bundled/index.html",
+    "format": "tsp format specs"
   },
   "dependencies": {
     "@typespec/compiler": "latest",
