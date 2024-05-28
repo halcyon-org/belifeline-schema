@@ -17,6 +17,9 @@ dependencies:
   '@typespec/rest':
     specifier: latest
     version: 0.56.0(@typespec/compiler@0.56.0)(@typespec/http@0.56.0)
+  '@typespec/versioning':
+    specifier: latest
+    version: 0.56.0(@typespec/compiler@0.56.0)
 
 devDependencies:
   '@redocly/cli':

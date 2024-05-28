@@ -7,7 +7,7 @@ import "./algorithm.tsp";
 using TypeSpec.Http;
 using TypeSpec.Rest;
 
-namespace AlgorithmServer;
+namespace BeLifelineServer;
 
 @route("/admin")
 @tag("Admin")

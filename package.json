@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "tsp compile specs --watch & pnpm run _doc",
-    "compile": "tsp compile specs",
+    "compile": "tsp compile specs && source ./scripts/compile.sh",
     "_doc": "redocly preview-docs schema/@typespec/openapi3/openapi.yaml",
     "bundle": "pnpm run compile && redocly build-docs schema/@typespec/openapi3/openapi.yaml --output bundled/index.html",
     "format": "tsp format specs"
@@ -13,7 +13,8 @@
     "@typespec/compiler": "latest",
     "@typespec/http": "latest",
     "@typespec/openapi3": "latest",
-    "@typespec/rest": "latest"
+    "@typespec/rest": "latest",
+    "@typespec/versioning": "latest"
   },
   "private": true,
   "devDependencies": {
