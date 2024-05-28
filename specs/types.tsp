@@ -10,14 +10,14 @@ namespace GeoJSON {
   }
   model MultiPoint {
     type: "MultiPoint";
-    coordinates: [numeric, numeric][];
+    coordinates: Point.coordinates[];
   }
   model Polygon {
     type: "Polygon";
-    coordinates: [[numeric, numeric]];
+    coordinates: MultiPoint.coordinates;
   }
   model MultiPolygon {
     type: "MultiPolygon";
-    coordinates: [[numeric, numeric]][];
+    coordinates: Polygon.coordinates[];
   }
 }
