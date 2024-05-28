@@ -7,8 +7,8 @@ import "./admin.tsp";
 @service({
   title: "BeLifeline Server API",
 })
-@Versioning.versioned(BeLifelineServer.Versions)
-namespace BeLifelineServer;
+@Versioning.versioned(BeLifeline.Versions)
+namespace BeLifeline;
 
 enum Versions {
   v0: "v0.2.0",

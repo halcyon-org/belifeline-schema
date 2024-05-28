@@ -5,7 +5,7 @@ import "@typespec/openapi3";
 using TypeSpec.Http;
 using TypeSpec.Rest;
 
-namespace BeLifelineServer;
+namespace BeLifeline;
 
 enum ExtInfoId {
   hoge: "HOGE_ID",

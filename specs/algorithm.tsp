@@ -7,7 +7,7 @@ import "./extinfo.tsp";
 using TypeSpec.Http;
 using TypeSpec.Rest;
 
-namespace BeLifelineServer;
+namespace BeLifeline;
 
 scalar algorithm_id extends string;
 
