@@ -2,12 +2,14 @@ import "@typespec/http";
 import "@typespec/rest";
 import "@typespec/openapi3";
 
+import "./extinfo.tsp";
+
 using TypeSpec.Http;
 using TypeSpec.Rest;
 
 namespace BeLifelineServer;
 
-alias algorithm_id = string;
+scalar algorithm_id extends string;
 
 model AlgorithmInfomation {
   @visibility("read", "query", "update", "delete")
@@ -16,7 +18,7 @@ model AlgorithmInfomation {
 
   algorithm_name: string;
   algorithm_description: string;
-  need_external: external_id[];
+  need_external: ExtInfoId[];
 
   @visibility("read", "query")
   first_entry_at: utcDateTime;
@@ -28,25 +30,13 @@ model AlgorithmInfomation {
   last_updated_at: utcDateTime;
 }
 
-alias external_id = string;
-
-model ExternalInfomation {
-  external_id: external_id;
-  external_name: string;
-  external_description: string;
-  first_entry_at: utcDateTime;
-  last_updated_at: utcDateTime;
-  updated_history: utcDateTime[];
-}
-
 @route("/algorithm")
 @tag("Algorithm")
 @doc("Algorithm API")
 @useAuth(BearerAuth)
 namespace Algorithm {
   interface Algorithm {
-    @get list(@query limit?: int32): AlgorithmInfomation[];
-    @post create(algorithm: AlgorithmInfomation): AlgorithmInfomation;
+    @get list(@query limit?: numeric): AlgorithmInfomation[];
   }
 
   @route("/{algorithm_id}")
@@ -57,8 +47,5 @@ namespace Algorithm {
       update_algorithm: AlgorithmInfomation,
     ): AlgorithmInfomation;
     @get get(@path algorithm_id: algorithm_id): AlgorithmInfomation;
-    @delete delete(@path algorithm_id: algorithm_id): {
-      delete_algorithm_id: algorithm_id;
-    };
   }
 }

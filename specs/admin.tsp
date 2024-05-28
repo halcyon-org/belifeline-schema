@@ -3,6 +3,7 @@ import "@typespec/rest";
 import "@typespec/openapi3";
 
 import "./algorithm.tsp";
+import "./extinfo.tsp";
 
 using TypeSpec.Http;
 using TypeSpec.Rest;
@@ -23,6 +24,18 @@ namespace Admin {
     @delete
     delete(@path algorithm_id: algorithm_id): {
       delete_algorithm_id: algorithm_id;
+    };
+  }
+
+  @route("/extinfo")
+  interface ExtInfo {
+    @post create(extinfo: ExternalInfomation): ExternalInfomation & {
+      bearer_token: string;
+    };
+    @route("/{extinfo_id}")
+    @delete
+    delete(@path extinfo_id: ExtInfoId): {
+      delete_extinfo_id: ExtInfoId;
     };
   }
 }
