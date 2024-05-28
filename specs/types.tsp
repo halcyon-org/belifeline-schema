@@ -21,3 +21,10 @@ namespace GeoJSON {
     coordinates: Polygon.coordinates[];
   }
 }
+
+namespace Date {
+  model DateUntil {
+    before?: utcDateTime;
+    after?: utcDateTime;
+  }
+}

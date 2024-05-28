@@ -21,7 +21,9 @@ enum ExtInfoId {
 }
 
 model ExternalInfomation {
+  @visibility("read", "query", "update", "delete")
   external_id: ExtInfoId;
+
   external_name: string;
   external_description: string;
   first_entry_at: utcDateTime;
@@ -34,7 +36,7 @@ model ExternalInfomation {
 @useAuth(BearerAuth)
 namespace BeLifeline.ExtInfo {
   interface ExtInfo {
-    @get list(@query limit?: numeric): ExternalInfomation[];
+    @get list(@query limit?: int32): ExternalInfomation[];
   }
 
   @route("/{extinfo_id}")

@@ -4,12 +4,14 @@ import "@typespec/openapi3";
 
 import "./algorithm.tsp";
 import "./extinfo.tsp";
+import "./provider.tsp";
 
 using TypeSpec.Http;
 using TypeSpec.Rest;
 
 using BeLifeline.Algorithm;
 using BeLifeline.ExtInfo;
+using BeLifeline.Provider;
 
 @route("/admin")
 @tag("Admin")
@@ -23,8 +25,8 @@ namespace BeLifeline.Admin {
     };
     @route("/{algorithm_id}")
     @delete
-    delete(@path algorithm_id: algorithm_id): {
-      delete_algorithm_id: algorithm_id;
+    delete(@path algorithm_id: algorithmId): {
+      delete_algorithm_id: algorithmId;
     };
   }
 
@@ -37,6 +39,16 @@ namespace BeLifeline.Admin {
     @delete
     delete(@path extinfo_id: ExtInfoId): {
       delete_extinfo_id: ExtInfoId;
+    };
+  }
+
+  @route("/client")
+  interface Client {
+    @post create(client: ClientData): ClientData;
+    @route("/{client_id}")
+    @post
+    delete(@path client_id: clientId): {
+      delete_client_id: clientId;
     };
   }
 }

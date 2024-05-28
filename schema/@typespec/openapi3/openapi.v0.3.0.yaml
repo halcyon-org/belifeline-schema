@@ -1,10 +1,11 @@
 openapi: 3.0.0
 info:
   title: BeLifeline Server API
-  version: v0.2.0
+  version: v0.3.0
 tags:
   - name: Algorithm
   - name: External Information
+  - name: Provider
   - name: Admin
 paths:
   /admin/algorithm:
@@ -33,6 +34,14 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/ExtInfo.ExtInfoId'
+                  algorithm_scales:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Algorithm.algorithmScale'
+                  algorithm_data_ids:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Algorithm.algorithmDataId'
                   first_entry_at:
                     type: string
                     format: date-time
@@ -49,6 +58,8 @@ paths:
                   - algorithm_name
                   - algorithm_description
                   - need_external
+                  - algorithm_scales
+                  - algorithm_data_ids
                   - first_entry_at
                   - last_entry_at
                   - last_updated_at
@@ -89,6 +100,57 @@ paths:
                     $ref: '#/components/schemas/Algorithm.algorithmId'
                 required:
                   - delete_algorithm_id
+      security:
+        - BearerAuth: []
+  /admin/client:
+    post:
+      tags:
+        - Admin
+      operationId: Client_create
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Provider.ClientData'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                client:
+                  $ref: '#/components/schemas/Provider.ClientDataCreate'
+              required:
+                - client
+      security:
+        - BearerAuth: []
+  /admin/client/{client_id}:
+    post:
+      tags:
+        - Admin
+      operationId: Client_delete
+      parameters:
+        - name: client_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/Provider.clientId'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  delete_client_id:
+                    $ref: '#/components/schemas/Provider.clientId'
+                required:
+                  - delete_client_id
       security:
         - BearerAuth: []
   /admin/extinfo:
@@ -140,7 +202,7 @@ paths:
               type: object
               properties:
                 extinfo:
-                  $ref: '#/components/schemas/ExtInfo.ExternalInfomation'
+                  $ref: '#/components/schemas/ExtInfo.ExternalInfomationCreate'
               required:
                 - extinfo
       security:
@@ -180,7 +242,8 @@ paths:
           in: query
           required: false
           schema:
-            type: number
+            type: integer
+            format: int32
       responses:
         '200':
           description: The request has succeeded.
@@ -242,6 +305,66 @@ paths:
                 $ref: '#/components/schemas/Algorithm.AlgorithmInfomation'
       security:
         - BearerAuth: []
+  /algorithm/{algorithm_id}/data:
+    get:
+      tags:
+        - Algorithm
+      operationId: EachAlgorithmData_get
+      parameters:
+        - name: algorithm_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/Algorithm.algorithmId'
+        - name: scale
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/Algorithm.algorithmScale'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Algorithm.AlgorithmData'
+      security:
+        - BearerAuth: []
+    put:
+      tags:
+        - Algorithm
+      operationId: EachAlgorithmData_update
+      parameters:
+        - name: algorithm_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/Algorithm.algorithmId'
+        - name: scale
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/Algorithm.algorithmScale'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Algorithm.AlgorithmData'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                update_data:
+                  $ref: '#/components/schemas/Algorithm.AlgorithmDataCreateOrUpdate'
+              required:
+                - update_data
+      security:
+        - BearerAuth: []
   /extinfo:
     get:
       tags:
@@ -252,7 +375,8 @@ paths:
           in: query
           required: false
           schema:
-            type: number
+            type: integer
+            format: int32
       responses:
         '200':
           description: The request has succeeded.
@@ -317,8 +441,129 @@ paths:
                 $ref: '#/components/schemas/ExtInfo.ExternalInfomation'
       security:
         - BearerAuth: []
+  /provider/clients:
+    get:
+      tags:
+        - Provider
+      operationId: Clients_getClient
+      description: Get client of api key
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Provider.ClientData'
+      security:
+        - ApiKeyAuth: []
+  /provider/data:
+    get:
+      tags:
+        - Provider
+      operationId: Data_list
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Algorithm.AlgorithmInfomation'
+      security:
+        - ApiKeyAuth: []
+  /provider/data/{altorithm_id}:
+    get:
+      tags:
+        - Provider
+      operationId: EachData_get
+      parameters:
+        - name: altorithm_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/Algorithm.algorithmId'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Algorithm.AlgorithmData'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                algorithm_data_id:
+                  $ref: '#/components/schemas/Algorithm.algorithmDataId'
+                area:
+                  $ref: '#/components/schemas/Types.GeoJSON.MultiPolygon'
+                until:
+                  $ref: '#/components/schemas/Types.Date.DateUntil'
+                until_entry:
+                  $ref: '#/components/schemas/Types.Date.DateUntil'
+                scale:
+                  $ref: '#/components/schemas/Algorithm.algorithmScale'
+      security:
+        - ApiKeyAuth: []
 components:
   schemas:
+    Algorithm.AlgorithmData:
+      type: object
+      required:
+        - algorithm_id
+        - algorithm_data_id
+        - algorithm_scale
+        - content_type
+        - content
+        - entry_at
+        - target_at
+      properties:
+        algorithm_id:
+          $ref: '#/components/schemas/Algorithm.algorithmId'
+        algorithm_data_id:
+          $ref: '#/components/schemas/Algorithm.algorithmDataId'
+        algorithm_scale:
+          $ref: '#/components/schemas/Algorithm.algorithmScale'
+        content_type:
+          $ref: '#/components/schemas/Algorithm.DataType'
+        content:
+          type: string
+          format: byte
+        entry_at:
+          type: string
+          format: date-time
+        target_at:
+          type: string
+          format: date-time
+    Algorithm.AlgorithmDataCreateOrUpdate:
+      type: object
+      required:
+        - algorithm_id
+        - algorithm_scale
+        - content_type
+        - content
+      properties:
+        algorithm_id:
+          $ref: '#/components/schemas/Algorithm.algorithmId'
+        algorithm_scale:
+          $ref: '#/components/schemas/Algorithm.algorithmScale'
+        content_type:
+          $ref: '#/components/schemas/Algorithm.DataType'
+        content:
+          type: string
+          format: byte
     Algorithm.AlgorithmInfomation:
       type: object
       required:
@@ -326,6 +571,8 @@ components:
         - algorithm_name
         - algorithm_description
         - need_external
+        - algorithm_scales
+        - algorithm_data_ids
         - first_entry_at
         - last_entry_at
         - last_updated_at
@@ -342,6 +589,14 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ExtInfo.ExtInfoId'
+        algorithm_scales:
+          type: array
+          items:
+            $ref: '#/components/schemas/Algorithm.algorithmScale'
+        algorithm_data_ids:
+          type: array
+          items:
+            $ref: '#/components/schemas/Algorithm.algorithmDataId'
         first_entry_at:
           type: string
           format: date-time
@@ -357,6 +612,8 @@ components:
         - algorithm_name
         - algorithm_description
         - need_external
+        - algorithm_scales
+        - algorithm_data_ids
       properties:
         algorithm_name:
           type: string
@@ -366,6 +623,14 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ExtInfo.ExtInfoId'
+        algorithm_scales:
+          type: array
+          items:
+            $ref: '#/components/schemas/Algorithm.algorithmScale'
+        algorithm_data_ids:
+          type: array
+          items:
+            $ref: '#/components/schemas/Algorithm.algorithmDataId'
     Algorithm.AlgorithmInfomationCreateOrUpdate:
       type: object
       required:
@@ -373,6 +638,8 @@ components:
         - algorithm_name
         - algorithm_description
         - need_external
+        - algorithm_scales
+        - algorithm_data_ids
       properties:
         algorithm_id:
           allOf:
@@ -386,12 +653,31 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ExtInfo.ExtInfoId'
+        algorithm_scales:
+          type: array
+          items:
+            $ref: '#/components/schemas/Algorithm.algorithmScale'
+        algorithm_data_ids:
+          type: array
+          items:
+            $ref: '#/components/schemas/Algorithm.algorithmDataId'
+    Algorithm.DataType:
+      type: string
+      enum:
+        - image
+        - csv
+        - json
     Algorithm.Versions:
       type: string
       enum:
         - lastest
+    Algorithm.algorithmDataId:
+      type: string
     Algorithm.algorithmId:
       type: string
+    Algorithm.algorithmScale:
+      type: number
+      format: float
     ExtInfo.ExtInfoId:
       type: string
       enum:
@@ -423,10 +709,71 @@ components:
           items:
             type: string
             format: date-time
+    ExtInfo.ExternalInfomationCreate:
+      type: object
+      required:
+        - external_name
+        - external_description
+        - first_entry_at
+        - last_updated_at
+        - updated_history
+      properties:
+        external_name:
+          type: string
+        external_description:
+          type: string
+        first_entry_at:
+          type: string
+          format: date-time
+        last_updated_at:
+          type: string
+          format: date-time
+        updated_history:
+          type: array
+          items:
+            type: string
+            format: date-time
     ExtInfo.Versions:
       type: string
       enum:
         - lastest
+    Provider.ClientData:
+      type: object
+      required:
+        - client_id
+        - name
+        - apiKey
+      properties:
+        client_id:
+          $ref: '#/components/schemas/Provider.clientId'
+        name:
+          type: string
+        apiKey:
+          $ref: '#/components/schemas/Provider.apiKey'
+    Provider.ClientDataCreate:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+    Provider.Versions:
+      type: string
+      enum:
+        - latest
+    Provider.apiKey:
+      type: string
+    Provider.clientId:
+      type: string
+    Types.Date.DateUntil:
+      type: object
+      properties:
+        before:
+          type: string
+          format: date-time
+        after:
+          type: string
+          format: date-time
     Types.GeoJSON.MultiPoint:
       type: object
       required:
@@ -490,8 +837,12 @@ components:
     Versions:
       type: string
       enum:
-        - v0.2.0
+        - v0.3.0
   securitySchemes:
     BearerAuth:
       type: http
       scheme: bearer
+    ApiKeyAuth:
+      type: apiKey
+      in: query
+      name: api_key
