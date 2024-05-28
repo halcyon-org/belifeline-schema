@@ -48,6 +48,7 @@ model AlgorithmInfomation {
 }
 
 model AlgorithmData {
+  @visibility("read", "query", "update", "delete")
   algorithm_id: algorithmId;
 
   @visibility("read", "query")

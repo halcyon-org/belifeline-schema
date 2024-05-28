@@ -21,7 +21,9 @@ enum ExtInfoId {
 }
 
 model ExternalInfomation {
+  @visibility("read", "query", "update", "delete")
   external_id: ExtInfoId;
+
   external_name: string;
   external_description: string;
   first_entry_at: utcDateTime;

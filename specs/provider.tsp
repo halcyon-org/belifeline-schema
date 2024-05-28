@@ -21,9 +21,13 @@ enum Versions {
 scalar clientId extends string;
 scalar apiKey extends string;
 
-model Client {
+model ClientData {
+  @visibility("read", "query", "update", "delete")
   client_id: clientId;
+
   name: string;
+
+  @visibility("read", "query")
   apiKey: apiKey;
 }
 
@@ -35,7 +39,7 @@ namespace BeLifeline.Provider {
   interface Clients {
     @doc("Get client of api key")
     @get
-    getClient(): Client;
+    getClient(): ClientData;
   }
 
   @route("/data")
