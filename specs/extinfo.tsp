@@ -1,15 +1,20 @@
 import "@typespec/http";
 import "@typespec/rest";
-import "@typespec/openapi3";
+import "@typespec/versioning";
 
 import "./types.tsp";
 
 using TypeSpec.Http;
 using TypeSpec.Rest;
+using TypeSpec.Versioning;
 
 using BeLifeline.Types;
 
-namespace BeLifeline;
+@versioned(Versions)
+namespace BeLifeline.ExtInfo;
+enum Versions {
+  latest: "lastest",
+}
 
 enum ExtInfoId {
   hoge: "HOGE_ID",
@@ -27,7 +32,7 @@ model ExternalInfomation {
 @route("/extinfo")
 @tag("External Information")
 @useAuth(BearerAuth)
-namespace ExtInfo {
+namespace BeLifeline.ExtInfo {
   interface ExtInfo {
     @get list(@query limit?: numeric): ExternalInfomation[];
   }

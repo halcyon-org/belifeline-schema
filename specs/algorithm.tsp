@@ -1,13 +1,21 @@
 import "@typespec/http";
 import "@typespec/rest";
-import "@typespec/openapi3";
+import "@typespec/versioning";
 
 import "./extinfo.tsp";
+import "./main.tsp";
 
 using TypeSpec.Http;
 using TypeSpec.Rest;
+using TypeSpec.Versioning;
 
-namespace BeLifeline;
+using BeLifeline.ExtInfo;
+
+@versioned(Versions)
+namespace BeLifeline.Algorithm;
+enum Versions {
+  latest: "lastest",
+}
 
 scalar algorithm_id extends string;
 
@@ -34,7 +42,7 @@ model AlgorithmInfomation {
 @tag("Algorithm")
 @doc("Algorithm API")
 @useAuth(BearerAuth)
-namespace Algorithm {
+namespace BeLifeline.Algorithm {
   interface Algorithm {
     @get list(@query limit?: numeric): AlgorithmInfomation[];
   }

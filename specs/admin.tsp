@@ -8,13 +8,14 @@ import "./extinfo.tsp";
 using TypeSpec.Http;
 using TypeSpec.Rest;
 
-namespace BeLifeline;
+using BeLifeline.Algorithm;
+using BeLifeline.ExtInfo;
 
 @route("/admin")
 @tag("Admin")
 @doc("Admin API")
 @useAuth(BearerAuth)
-namespace Admin {
+namespace BeLifeline.Admin {
   @route("/algorithm")
   interface Algorithm {
     @post create(algorithm: AlgorithmInfomation): AlgorithmInfomation & {
