@@ -1,0 +1,22 @@
+{
+  "name": "belifeline-schema",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsp compile specs --watch & pnpm run _doc",
+    "compile": "tsp compile specs",
+    "_doc": "redocly preview-docs schema/@typespec/openapi3/openapi.yaml",
+    "bundle": "pnpm run compile && redocly build-docs schema/@typespec/openapi3/openapi.yaml --output bundled/index.html",
+    "format": "tsp format specs"
+  },
+  "dependencies": {
+    "@typespec/compiler": "latest",
+    "@typespec/http": "latest",
+    "@typespec/openapi3": "latest",
+    "@typespec/rest": "latest"
+  },
+  "private": true,
+  "devDependencies": {
+    "@redocly/cli": "^1.13.0"
+  }
+}

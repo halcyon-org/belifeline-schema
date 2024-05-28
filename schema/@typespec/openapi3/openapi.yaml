@@ -1,0 +1,311 @@
+openapi: 3.0.0
+info:
+  title: BeLifeline Server API
+  version: 0.0.0
+tags:
+  - name: Algorithm
+  - name: Admin
+paths:
+  /admin/algorithm:
+    post:
+      tags:
+        - Admin
+      operationId: Algorithm_create
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  algorithm_id:
+                    type: string
+                    description: From Admin API
+                  algorithm_name:
+                    type: string
+                  algorithm_description:
+                    type: string
+                  need_external:
+                    type: array
+                    items:
+                      type: string
+                  first_entry_at:
+                    type: string
+                    format: date-time
+                  last_entry_at:
+                    type: string
+                    format: date-time
+                  last_updated_at:
+                    type: string
+                    format: date-time
+                  bearer_token:
+                    type: string
+                required:
+                  - algorithm_id
+                  - algorithm_name
+                  - algorithm_description
+                  - need_external
+                  - first_entry_at
+                  - last_entry_at
+                  - last_updated_at
+                  - bearer_token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                algorithm:
+                  $ref: '#/components/schemas/AlgorithmInfomationCreate'
+              required:
+                - algorithm
+      security:
+        - BearerAuth: []
+  /admin/algorithm/{algorithm_id}:
+    delete:
+      tags:
+        - Admin
+      operationId: Algorithm_delete
+      parameters:
+        - name: algorithm_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  delete_algorithm_id:
+                    type: string
+                required:
+                  - delete_algorithm_id
+      security:
+        - BearerAuth: []
+  /algorithm:
+    get:
+      tags:
+        - Algorithm
+      operationId: Algorithm_list
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AlgorithmInfomation'
+      security:
+        - BearerAuth: []
+    post:
+      tags:
+        - Algorithm
+      operationId: Algorithm_create
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlgorithmInfomation'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                algorithm:
+                  $ref: '#/components/schemas/AlgorithmInfomationCreate'
+              required:
+                - algorithm
+      security:
+        - BearerAuth: []
+  /algorithm/{algorithm_id}:
+    put:
+      tags:
+        - Algorithm
+      operationId: EachAlgorithm_update
+      parameters:
+        - name: algorithm_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlgorithmInfomation'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                update_algorithm:
+                  $ref: '#/components/schemas/AlgorithmInfomationCreateOrUpdate'
+              required:
+                - update_algorithm
+      security:
+        - BearerAuth: []
+    get:
+      tags:
+        - Algorithm
+      operationId: EachAlgorithm_get
+      parameters:
+        - name: algorithm_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlgorithmInfomation'
+      security:
+        - BearerAuth: []
+    delete:
+      tags:
+        - Algorithm
+      operationId: EachAlgorithm_delete
+      parameters:
+        - name: algorithm_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  delete_algorithm_id:
+                    type: string
+                required:
+                  - delete_algorithm_id
+      security:
+        - BearerAuth: []
+components:
+  schemas:
+    AlgorithmInfomation:
+      type: object
+      required:
+        - algorithm_id
+        - algorithm_name
+        - algorithm_description
+        - need_external
+        - first_entry_at
+        - last_entry_at
+        - last_updated_at
+      properties:
+        algorithm_id:
+          type: string
+          description: From Admin API
+        algorithm_name:
+          type: string
+        algorithm_description:
+          type: string
+        need_external:
+          type: array
+          items:
+            type: string
+        first_entry_at:
+          type: string
+          format: date-time
+        last_entry_at:
+          type: string
+          format: date-time
+        last_updated_at:
+          type: string
+          format: date-time
+    AlgorithmInfomationCreate:
+      type: object
+      required:
+        - algorithm_name
+        - algorithm_description
+        - need_external
+      properties:
+        algorithm_name:
+          type: string
+        algorithm_description:
+          type: string
+        need_external:
+          type: array
+          items:
+            type: string
+    AlgorithmInfomationCreateOrUpdate:
+      type: object
+      required:
+        - algorithm_id
+        - algorithm_name
+        - algorithm_description
+        - need_external
+      properties:
+        algorithm_id:
+          type: string
+          description: From Admin API
+        algorithm_name:
+          type: string
+        algorithm_description:
+          type: string
+        need_external:
+          type: array
+          items:
+            type: string
+    ExternalInfomation:
+      type: object
+      required:
+        - external_id
+        - external_name
+        - external_description
+        - first_entry_at
+        - last_updated_at
+        - updated_history
+      properties:
+        external_id:
+          type: string
+        external_name:
+          type: string
+        external_description:
+          type: string
+        first_entry_at:
+          type: string
+          format: date-time
+        last_updated_at:
+          type: string
+          format: date-time
+        updated_history:
+          type: array
+          items:
+            type: string
+            format: date-time
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
