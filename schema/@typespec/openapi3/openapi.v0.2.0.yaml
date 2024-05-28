@@ -269,15 +269,32 @@ paths:
       tags:
         - External Information
       operationId: Hoge_get
-      parameters: []
+      parameters:
+        - name: area
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/Types.GeoJSON.MultiPolygon'
       responses:
         '200':
           description: The request has succeeded.
           content:
-            image/jpeg:
+            application/json:
               schema:
-                type: string
-                format: binary
+                type: array
+                items:
+                  type: object
+                  properties:
+                    contentType:
+                      type: string
+                      enum:
+                        - image/jpeg
+                    image:
+                      type: string
+                      format: byte
+                  required:
+                    - contentType
+                    - image
       security:
         - BearerAuth: []
   /extinfo/{extinfo_id}:
@@ -400,6 +417,62 @@ components:
           items:
             type: string
             format: date-time
+    Types.GeoJSON.MultiPoint:
+      type: object
+      required:
+        - type
+        - coordinates
+      properties:
+        type:
+          type: string
+          enum:
+            - MultiPoint
+        coordinates:
+          type: array
+          items:
+            type: array
+            items: {}
+    Types.GeoJSON.MultiPolygon:
+      type: object
+      required:
+        - type
+        - coordinates
+      properties:
+        type:
+          type: string
+          enum:
+            - MultiPolygon
+        coordinates:
+          type: array
+          items:
+            type: array
+            items: {}
+    Types.GeoJSON.Point:
+      type: object
+      required:
+        - type
+        - coordinates
+      properties:
+        type:
+          type: string
+          enum:
+            - Point
+        coordinates:
+          type: array
+          items: {}
+    Types.GeoJSON.Polygon:
+      type: object
+      required:
+        - type
+        - coordinates
+      properties:
+        type:
+          type: string
+          enum:
+            - Polygon
+        coordinates:
+          type: array
+          items: {}
     Versions:
       type: string
       enum:

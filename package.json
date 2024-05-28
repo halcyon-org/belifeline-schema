@@ -12,6 +12,7 @@
   "dependencies": {
     "@typespec/compiler": "latest",
     "@typespec/http": "latest",
+    "@typespec/json-schema": "^0.56.0",
     "@typespec/openapi3": "latest",
     "@typespec/rest": "latest",
     "@typespec/versioning": "latest"

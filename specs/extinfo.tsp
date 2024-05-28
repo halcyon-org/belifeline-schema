@@ -2,8 +2,12 @@ import "@typespec/http";
 import "@typespec/rest";
 import "@typespec/openapi3";
 
+import "./types.tsp";
+
 using TypeSpec.Http;
 using TypeSpec.Rest;
+
+using BeLifeline.Types;
 
 namespace BeLifeline;
 
@@ -36,9 +40,9 @@ namespace ExtInfo {
   @route("/HOGE_ID/data")
   interface Hoge {
     @get
-    get(): {
+    get(@query area?: GeoJSON.MultiPolygon): {
       @header contentType: "image/jpeg";
       @body image: bytes;
-    };
+    }[];
   }
 }

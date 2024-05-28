@@ -11,6 +11,9 @@ dependencies:
   '@typespec/http':
     specifier: latest
     version: 0.56.0(@typespec/compiler@0.56.0)
+  '@typespec/json-schema':
+    specifier: ^0.56.0
+    version: 0.56.0(@typespec/compiler@0.56.0)
   '@typespec/openapi3':
     specifier: latest
     version: 0.56.0(@typespec/compiler@0.56.0)(@typespec/http@0.56.0)(@typespec/openapi@0.56.0)(@typespec/versioning@0.56.0)
@@ -523,6 +526,16 @@ packages:
       '@typespec/compiler': ~0.56.0
     dependencies:
       '@typespec/compiler': 0.56.0
+    dev: false
+
+  /@typespec/json-schema@0.56.0(@typespec/compiler@0.56.0):
+    resolution: {integrity: sha512-DHjKvencrFJDu6p2Rdc4aw/ht+slfPnsFee++uq44z8UdMguSx0WDfw4N9I/l7rTkKTLg5LpoRV8MzdihjJNFQ==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      '@typespec/compiler': ~0.56.0
+    dependencies:
+      '@typespec/compiler': 0.56.0
+      yaml: 2.4.2
     dev: false
 
   /@typespec/openapi3@0.56.0(@typespec/compiler@0.56.0)(@typespec/http@0.56.0)(@typespec/openapi@0.56.0)(@typespec/versioning@0.56.0):
