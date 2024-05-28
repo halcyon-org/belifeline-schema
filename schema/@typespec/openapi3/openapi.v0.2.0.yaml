@@ -456,7 +456,9 @@ components:
           type: array
           items:
             type: array
-            items: {}
+            items:
+              type: array
+              items: {}
     Types.GeoJSON.Point:
       type: object
       required:
@@ -482,7 +484,9 @@ components:
             - Polygon
         coordinates:
           type: array
-          items: {}
+          items:
+            type: array
+            items: {}
     Versions:
       type: string
       enum:
