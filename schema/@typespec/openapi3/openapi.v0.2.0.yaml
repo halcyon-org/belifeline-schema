@@ -1,0 +1,493 @@
+openapi: 3.0.0
+info:
+  title: BeLifeline Server API
+  version: v0.2.0
+tags:
+  - name: Algorithm
+  - name: External Information
+  - name: Admin
+paths:
+  /admin/algorithm:
+    post:
+      tags:
+        - Admin
+      operationId: Algorithm_create
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  algorithm_id:
+                    allOf:
+                      - $ref: '#/components/schemas/Algorithm.algorithm_id'
+                    description: From Admin API
+                  algorithm_name:
+                    type: string
+                  algorithm_description:
+                    type: string
+                  need_external:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ExtInfo.ExtInfoId'
+                  first_entry_at:
+                    type: string
+                    format: date-time
+                  last_entry_at:
+                    type: string
+                    format: date-time
+                  last_updated_at:
+                    type: string
+                    format: date-time
+                  bearer_token:
+                    type: string
+                required:
+                  - algorithm_id
+                  - algorithm_name
+                  - algorithm_description
+                  - need_external
+                  - first_entry_at
+                  - last_entry_at
+                  - last_updated_at
+                  - bearer_token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                algorithm:
+                  $ref: '#/components/schemas/Algorithm.AlgorithmInfomationCreate'
+              required:
+                - algorithm
+      security:
+        - BearerAuth: []
+  /admin/algorithm/{algorithm_id}:
+    delete:
+      tags:
+        - Admin
+      operationId: Algorithm_delete
+      parameters:
+        - name: algorithm_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/Algorithm.algorithm_id'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  delete_algorithm_id:
+                    $ref: '#/components/schemas/Algorithm.algorithm_id'
+                required:
+                  - delete_algorithm_id
+      security:
+        - BearerAuth: []
+  /admin/extinfo:
+    post:
+      tags:
+        - Admin
+      operationId: ExtInfo_create
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  external_id:
+                    $ref: '#/components/schemas/ExtInfo.ExtInfoId'
+                  external_name:
+                    type: string
+                  external_description:
+                    type: string
+                  first_entry_at:
+                    type: string
+                    format: date-time
+                  last_updated_at:
+                    type: string
+                    format: date-time
+                  updated_history:
+                    type: array
+                    items:
+                      type: string
+                      format: date-time
+                  bearer_token:
+                    type: string
+                required:
+                  - external_id
+                  - external_name
+                  - external_description
+                  - first_entry_at
+                  - last_updated_at
+                  - updated_history
+                  - bearer_token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                extinfo:
+                  $ref: '#/components/schemas/ExtInfo.ExternalInfomation'
+              required:
+                - extinfo
+      security:
+        - BearerAuth: []
+  /admin/extinfo/{extinfo_id}:
+    delete:
+      tags:
+        - Admin
+      operationId: ExtInfo_delete
+      parameters:
+        - name: extinfo_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/ExtInfo.ExtInfoId'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  delete_extinfo_id:
+                    $ref: '#/components/schemas/ExtInfo.ExtInfoId'
+                required:
+                  - delete_extinfo_id
+      security:
+        - BearerAuth: []
+  /algorithm:
+    get:
+      tags:
+        - Algorithm
+      operationId: Algorithm_list
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: number
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Algorithm.AlgorithmInfomation'
+      security:
+        - BearerAuth: []
+  /algorithm/{algorithm_id}:
+    put:
+      tags:
+        - Algorithm
+      operationId: EachAlgorithm_update
+      parameters:
+        - name: algorithm_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/Algorithm.algorithm_id'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Algorithm.AlgorithmInfomation'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                update_algorithm:
+                  $ref: '#/components/schemas/Algorithm.AlgorithmInfomationCreateOrUpdate'
+              required:
+                - update_algorithm
+      security:
+        - BearerAuth: []
+    get:
+      tags:
+        - Algorithm
+      operationId: EachAlgorithm_get
+      parameters:
+        - name: algorithm_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/Algorithm.algorithm_id'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Algorithm.AlgorithmInfomation'
+      security:
+        - BearerAuth: []
+  /extinfo:
+    get:
+      tags:
+        - External Information
+      operationId: ExtInfo_list
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: number
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExtInfo.ExternalInfomation'
+      security:
+        - BearerAuth: []
+  /extinfo/HOGE_ID/data:
+    get:
+      tags:
+        - External Information
+      operationId: Hoge_get
+      parameters:
+        - name: area
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/Types.GeoJSON.MultiPolygon'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    contentType:
+                      type: string
+                      enum:
+                        - image/jpeg
+                    image:
+                      type: string
+                      format: byte
+                  required:
+                    - contentType
+                    - image
+      security:
+        - BearerAuth: []
+  /extinfo/{extinfo_id}:
+    get:
+      tags:
+        - External Information
+      operationId: EachExtInfo_get
+      parameters:
+        - name: extinfo_id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/ExtInfo.ExtInfoId'
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtInfo.ExternalInfomation'
+      security:
+        - BearerAuth: []
+components:
+  schemas:
+    Algorithm.AlgorithmInfomation:
+      type: object
+      required:
+        - algorithm_id
+        - algorithm_name
+        - algorithm_description
+        - need_external
+        - first_entry_at
+        - last_entry_at
+        - last_updated_at
+      properties:
+        algorithm_id:
+          allOf:
+            - $ref: '#/components/schemas/Algorithm.algorithm_id'
+          description: From Admin API
+        algorithm_name:
+          type: string
+        algorithm_description:
+          type: string
+        need_external:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExtInfo.ExtInfoId'
+        first_entry_at:
+          type: string
+          format: date-time
+        last_entry_at:
+          type: string
+          format: date-time
+        last_updated_at:
+          type: string
+          format: date-time
+    Algorithm.AlgorithmInfomationCreate:
+      type: object
+      required:
+        - algorithm_name
+        - algorithm_description
+        - need_external
+      properties:
+        algorithm_name:
+          type: string
+        algorithm_description:
+          type: string
+        need_external:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExtInfo.ExtInfoId'
+    Algorithm.AlgorithmInfomationCreateOrUpdate:
+      type: object
+      required:
+        - algorithm_id
+        - algorithm_name
+        - algorithm_description
+        - need_external
+      properties:
+        algorithm_id:
+          allOf:
+            - $ref: '#/components/schemas/Algorithm.algorithm_id'
+          description: From Admin API
+        algorithm_name:
+          type: string
+        algorithm_description:
+          type: string
+        need_external:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExtInfo.ExtInfoId'
+    Algorithm.Versions:
+      type: string
+      enum:
+        - lastest
+    Algorithm.algorithm_id:
+      type: string
+    ExtInfo.ExtInfoId:
+      type: string
+      enum:
+        - HOGE_ID
+    ExtInfo.ExternalInfomation:
+      type: object
+      required:
+        - external_id
+        - external_name
+        - external_description
+        - first_entry_at
+        - last_updated_at
+        - updated_history
+      properties:
+        external_id:
+          $ref: '#/components/schemas/ExtInfo.ExtInfoId'
+        external_name:
+          type: string
+        external_description:
+          type: string
+        first_entry_at:
+          type: string
+          format: date-time
+        last_updated_at:
+          type: string
+          format: date-time
+        updated_history:
+          type: array
+          items:
+            type: string
+            format: date-time
+    ExtInfo.Versions:
+      type: string
+      enum:
+        - lastest
+    Types.GeoJSON.MultiPoint:
+      type: object
+      required:
+        - type
+        - coordinates
+      properties:
+        type:
+          type: string
+          enum:
+            - MultiPoint
+        coordinates:
+          type: array
+          items:
+            type: array
+            items: {}
+    Types.GeoJSON.MultiPolygon:
+      type: object
+      required:
+        - type
+        - coordinates
+      properties:
+        type:
+          type: string
+          enum:
+            - MultiPolygon
+        coordinates:
+          type: array
+          items:
+            type: array
+            items: {}
+    Types.GeoJSON.Point:
+      type: object
+      required:
+        - type
+        - coordinates
+      properties:
+        type:
+          type: string
+          enum:
+            - Point
+        coordinates:
+          type: array
+          items: {}
+    Types.GeoJSON.Polygon:
+      type: object
+      required:
+        - type
+        - coordinates
+      properties:
+        type:
+          type: string
+          enum:
+            - Polygon
+        coordinates:
+          type: array
+          items: {}
+    Versions:
+      type: string
+      enum:
+        - v0.2.0
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
