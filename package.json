@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "tsp compile specs --watch & pnpm run _doc",
-    "compile": "tsp compile specs && ./scripts/compile.sh",
+    "compile": "tsp compile specs && sh ./scripts/compile.sh",
     "_doc": "redocly preview-docs schema/@typespec/openapi3/openapi.yaml",
     "bundle": "pnpm run compile && redocly build-docs schema/@typespec/openapi3/openapi.yaml --output bundled/index.html",
     "format": "tsp format specs"
