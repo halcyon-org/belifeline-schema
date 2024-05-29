@@ -21,6 +21,11 @@ enum Versions {
 scalar clientId extends string;
 scalar apiKey extends string;
 
+enum RequestType {
+  TileMapService,
+  GeoJSON,
+}
+
 model ClientData {
   @visibility("read", "query", "update", "delete")
   client_id: clientId;
@@ -51,11 +56,12 @@ namespace BeLifeline.Provider {
   interface EachData {
     @get get(
       @path altorithm_id: algorithmId,
-      algorithm_data_id?: algorithmDataId,
-      area?: GeoJSON.MultiPolygon,
-      until?: Date.DateUntil,
-      until_entry?: Date.DateUntil,
-      scale?: algorithmScale,
+      @query type: RequestType,
+      @query algorithm_data_id?: algorithmDataId,
+      @query area?: GeoJSON.MultiPolygon,
+      @query until?: Date.DateUntil,
+      @query until_entry?: Date.DateUntil,
+      @query scale?: algorithmScale,
     ): AlgorithmData;
   }
 }
