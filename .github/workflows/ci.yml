@@ -24,3 +24,10 @@ jobs:
         run: pnpm run lint
       - name: Bundle Check
         run: pnpm run bundle
+      - name: Compile
+        run: pnpm run compile
+      - name: Check diff
+        run: |
+          if [[ `git status --porcelain` ]]; then
+            exit 1
+          fi
