@@ -68,7 +68,7 @@ model AlgorithmData {
 @route("/algorithm")
 @tag("Algorithm")
 @doc("Algorithm API")
-@useAuth(BearerAuth)
+@useAuth(ApiKeyAuth<ApiKeyLocation.query, "api_key">)
 namespace BeLifeline.Algorithm {
   interface Algorithm {
     @get list(@query limit?: int32): AlgorithmInfomation[];

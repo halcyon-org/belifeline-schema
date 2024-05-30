@@ -16,7 +16,7 @@ using BeLifeline.Provider;
 @route("/admin")
 @tag("Admin")
 @doc("Admin API")
-@useAuth(BearerAuth)
+@useAuth(ApiKeyAuth<ApiKeyLocation.query, "api_key">)
 namespace BeLifeline.Admin {
   @route("/algorithm")
   interface Algorithm {

@@ -33,7 +33,7 @@ model ExternalInfomation {
 
 @route("/extinfo")
 @tag("External Information")
-@useAuth(BearerAuth)
+@useAuth(ApiKeyAuth<ApiKeyLocation.query, "api_key">)
 namespace BeLifeline.ExtInfo {
   interface ExtInfo {
     @get list(@query limit?: int32): ExternalInfomation[];
