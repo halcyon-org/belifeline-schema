@@ -1,11 +1,11 @@
-import * as fs from "fs";
-import * as path from "path";
+import * as fs from "node:fs";
+import * as path from "node:path";
 
 const dirPath = path.resolve("schema/@typespec/openapi3");
 
 const yamlFiles = fs
   .readdirSync(dirPath)
-  .filter((file) => file.endsWith(".yaml"));
+  .filter(file => file.endsWith(".yaml"));
 const versionRegex = /(\d+\.\d+\.\d+)/;
 
 yamlFiles.sort((a, b) => {
@@ -24,8 +24,8 @@ const relativeTarget = path.relative(path.dirname(symlinkPath), latestFilePath);
 
 try {
   if (
-    fs.existsSync(symlinkPath) ||
-    fs.lstatSync(symlinkPath).isSymbolicLink()
+    fs.existsSync(symlinkPath)
+    || fs.lstatSync(symlinkPath).isSymbolicLink()
   ) {
     fs.unlinkSync(symlinkPath);
   }
@@ -33,6 +33,7 @@ try {
   fs.symlinkSync(relativeTarget, symlinkPath);
 
   console.log(`Linked ${symlinkPath} -> ${relativeTarget}`);
-} catch (err) {
+}
+catch (err) {
   console.error(`Error creating symlink: ${err}`);
 }

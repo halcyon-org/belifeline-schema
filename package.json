@@ -1,13 +1,16 @@
 {
   "name": "belifeline-schema",
-  "version": "0.1.0",
   "type": "module",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
     "dev": "pnpm run compile & tsp compile specs --watch & pnpm run _doc",
     "compile": "tsp compile specs && tsx ./scripts/compile.ts",
     "_doc": "redocly preview-docs schema/@typespec/openapi3/openapi.yaml",
     "bundle": "pnpm run compile && redocly build-docs schema/@typespec/openapi3/openapi.yaml --output bundled/index.html",
-    "format": "tsp format specs"
+    "format": "tsp format specs",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "@typespec/compiler": "latest",
@@ -17,10 +20,11 @@
     "@typespec/rest": "latest",
     "@typespec/versioning": "latest"
   },
-  "private": true,
   "devDependencies": {
+    "@antfu/eslint-config": "^2.19.1",
     "@redocly/cli": "^1.13.0",
     "@types/node": "^20.12.12",
+    "eslint": "^9.3.0",
     "tsx": "^4.11.0",
     "typescript": "^5.4.5"
   }
