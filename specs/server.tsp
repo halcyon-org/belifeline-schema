@@ -13,7 +13,7 @@ enum Versions {
 }
 
 @route("/")
-@tag("Main")
+@tag("Server")
 namespace BeLifeline.Server {
   @route("/status")
   interface Status {
