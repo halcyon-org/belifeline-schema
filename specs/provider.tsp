@@ -19,7 +19,6 @@ enum Versions {
 }
 
 scalar clientId extends string;
-scalar apiKey extends string;
 
 enum RequestType {
   TileMapService,
@@ -33,7 +32,7 @@ model ClientData {
   name: string;
 
   @visibility("read", "query")
-  apiKey: apiKey;
+  api_key: Auth.apiKey;
 }
 
 @route("/provider")

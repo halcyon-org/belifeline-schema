@@ -1,6 +1,14 @@
+import "@typespec/versioning";
+
 import "@typespec/json-schema";
 
+using TypeSpec.Versioning;
+
+@versioned(Versions)
 namespace BeLifeline.Types;
+enum Versions {
+  latest: "latest",
+}
 
 @doc("https://ja.wikipedia.org/wiki/GeoJSON")
 namespace GeoJSON {
@@ -27,4 +35,8 @@ namespace Date {
     before?: utcDateTime;
     after?: utcDateTime;
   }
+}
+
+namespace Auth {
+  scalar apiKey extends string;
 }

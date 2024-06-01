@@ -4,12 +4,14 @@ import "@typespec/versioning";
 
 import "./extinfo.tsp";
 import "./main.tsp";
+import "./types.tsp";
 
 using TypeSpec.Http;
 using TypeSpec.Rest;
 using TypeSpec.Versioning;
 
 using BeLifeline.ExtInfo;
+using BeLifeline.Types;
 
 @versioned(Versions)
 namespace BeLifeline.Algorithm;
@@ -45,6 +47,9 @@ model AlgorithmInfomation {
 
   @visibility("read", "query")
   last_updated_at: utcDateTime;
+
+  @visibility
+  secret_api_key: Auth.apiKey;
 }
 
 model AlgorithmData {
