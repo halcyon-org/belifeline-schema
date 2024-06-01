@@ -5,6 +5,7 @@ import "@typespec/openapi3";
 import "./algorithm.tsp";
 import "./extinfo.tsp";
 import "./provider.tsp";
+import "./types.tsp";
 
 using TypeSpec.Http;
 using TypeSpec.Rest;
@@ -12,6 +13,7 @@ using TypeSpec.Rest;
 using BeLifeline.Algorithm;
 using BeLifeline.ExtInfo;
 using BeLifeline.Provider;
+using BeLifeline.Types;
 
 @route("/admin")
 @tag("Admin")
@@ -21,7 +23,7 @@ namespace BeLifeline.Admin {
   @route("/algorithm")
   interface Algorithm {
     @post create(algorithm: AlgorithmInfomation): AlgorithmInfomation & {
-      bearer_token: string;
+      api_key: Auth.apiKey;
     };
     @route("/{algorithm_id}")
     @delete
@@ -32,9 +34,8 @@ namespace BeLifeline.Admin {
 
   @route("/extinfo")
   interface ExtInfo {
-    @post create(extinfo: ExternalInfomation): ExternalInfomation & {
-      bearer_token: string;
-    };
+    @post create(extinfo: ExternalInfomation): ExternalInfomation;
+
     @route("/{extinfo_id}")
     @delete
     delete(@path extinfo_id: ExtInfoId): {
