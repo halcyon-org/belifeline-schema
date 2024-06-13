@@ -95,7 +95,10 @@ namespace BeLifeline.Algorithm {
   @route("/{algorithm_id}/data")
   interface EachAlgorithmData {
     @get
-    get(@path algorithm_id: algorithmId, @query scale: algorithmScale): AlgorithmData;
+    get(
+      @path algorithm_id: algorithmId,
+      @query scale: algorithmScale,
+    ): AlgorithmData;
     @put
     update(
       @path algorithm_id: algorithmId,
