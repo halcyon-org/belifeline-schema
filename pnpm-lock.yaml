@@ -31,7 +31,7 @@ importers:
         specifier: ^2.21.0
         version: 2.21.1(@vue/compiler-sfc@3.4.27)(eslint@9.4.0)(typescript@5.4.5)
       '@redocly/cli':
-        specifier: ^1.14.0
+        specifier: ^1.15.0
         version: 1.15.0(enzyme@3.11.0)
       '@types/node':
         specifier: ^20.14.2
