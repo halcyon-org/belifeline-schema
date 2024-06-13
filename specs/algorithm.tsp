@@ -38,6 +38,7 @@ model AlgorithmInfomation {
   need_external: ExtInfoId[];
   algorithm_scales: algorithmScale[];
   algorithm_data_ids: algorithmDataId[];
+  version: Common.version;
 
   @visibility("read", "query")
   first_entry_at: utcDateTime;
@@ -55,6 +56,8 @@ model AlgorithmInfomation {
 model AlgorithmData {
   @visibility("read", "query", "update", "delete")
   algorithm_id: algorithmId;
+
+  version: Common.version;
 
   @visibility("read", "query")
   algorithm_data_id: algorithmDataId;
