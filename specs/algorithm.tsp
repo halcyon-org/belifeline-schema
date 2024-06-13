@@ -36,6 +36,10 @@ model AlgorithmInfomation {
   algorithm_name: string;
   algorithm_description: string;
   need_external: ExtInfoId[];
+
+  @doc("param name: param default")
+  algorithm_params: Record<string>;
+
   algorithm_scales: algorithmScale[];
   algorithm_data_ids: algorithmDataId[];
   version: Common.version;

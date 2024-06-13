@@ -60,6 +60,7 @@ namespace BeLifeline.Provider {
       @query area?: GeoJSON.MultiPolygon,
       @query until?: Date.DateUntil,
       @query until_entry?: Date.DateUntil,
+      @query param?: Record<string>,
       @query scale?: algorithmScale,
     ): AlgorithmData;
   }
