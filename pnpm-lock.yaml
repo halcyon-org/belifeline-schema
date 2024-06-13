@@ -40,7 +40,7 @@ importers:
         specifier: ^9.4.0
         version: 9.4.0
       tsx:
-        specifier: ^4.15.1
+        specifier: ^4.15.3
         version: 4.15.3
       typescript:
         specifier: ^5.4.5
