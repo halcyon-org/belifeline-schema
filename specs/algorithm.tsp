@@ -38,6 +38,7 @@ model AlgorithmInfomation {
   need_external: ExtInfoId[];
   algorithm_scales: algorithmScale[];
   algorithm_data_ids: algorithmDataId[];
+  version: Common.version;
 
   @visibility("read", "query")
   first_entry_at: utcDateTime;
@@ -55,6 +56,8 @@ model AlgorithmInfomation {
 model AlgorithmData {
   @visibility("read", "query", "update", "delete")
   algorithm_id: algorithmId;
+
+  version: Common.version;
 
   @visibility("read", "query")
   algorithm_data_id: algorithmDataId;
@@ -92,10 +95,7 @@ namespace BeLifeline.Algorithm {
   @route("/{algorithm_id}/data")
   interface EachAlgorithmData {
     @get
-    get(
-      @path algorithm_id: algorithmId,
-      @query scale: algorithmScale,
-    ): AlgorithmData;
+    get(@path algorithm_id: algorithmId, @query scale: algorithmScale): AlgorithmData;
     @put
     update(
       @path algorithm_id: algorithmId,
