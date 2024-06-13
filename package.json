@@ -9,7 +9,8 @@
     "compile": "tsp compile specs && tsx ./scripts/compile.ts",
     "_doc": "redocly preview-docs schema/@typespec/openapi3/openapi.yaml",
     "bundle": "pnpm run compile && redocly build-docs schema/@typespec/openapi3/openapi.yaml --output bundled/index.html",
-    "format": "tsp format specs",
+    "format": "tsp format specs --check",
+    "format:fix": "tsp format specs",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
