@@ -1,7 +1,7 @@
 name: External API Addition Request
 description: Template to use when sending additional requests for external APIs.
 title: "[Ext]: "
-labels: ["external api"]
+labels: [external api]
 body:
   - type: textarea
     id: external-api-description
