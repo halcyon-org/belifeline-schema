@@ -1,0 +1,20 @@
+name: External API Addition Request
+description: Template to use when sending additional requests for external APIs.
+title: "[Ext]: "
+labels: [external api]
+body:
+  - type: textarea
+    id: external-api-description
+    attributes:
+      label: Description of the external API you want
+      description: Please describe in detail the API URL, reference, name, and plan (fee) e.t.c.
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-use-for-description
+    attributes:
+      label: What to use this API for
+      description: Please describe in as much detail as possible what this API will be used for. What information do you need to use this API for?
+    validations:
+      required: true
