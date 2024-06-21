@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.21.1",
-    "@redocly/cli": "^1.15.0",
+    "@redocly/cli": "^1.16.0",
     "@types/node": "^20.14.5",
     "eslint": "^9.5.0",
     "tsx": "^4.15.6",
