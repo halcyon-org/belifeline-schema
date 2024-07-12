@@ -3,18 +3,65 @@ description: Template to use when sending additional requests for external APIs.
 title: "[Ext]: "
 labels: [external api]
 body:
-  - type: textarea
-    id: external-api-description
+  - type: input
+    id: external-api-summary
     attributes:
-      label: Description of the external API you want
-      description: Please describe in detail the API URL, reference, name, and plan (fee) e.t.c.
+      label: What this API is
+    validations:
+      required: true
+
+  - type: input
+    id: external-api-url
+    attributes:
+      label: API endpoint URL
     validations:
       required: true
 
   - type: textarea
-    id: what-use-for-description
+    id: external-api-list
     attributes:
-      label: What to use this API for
-      description: Please describe in as much detail as possible what this API will be used for. What information do you need to use this API for?
+      label: Data you want to get
+      value: |
+        -
+        -
+        -
+    validations:
+      required: true
+
+  - type: input
+    id: external-api-interval
+    attributes:
+      label: Interval you will get data
+      value: times / month
+    validations:
+      required: true
+
+  - type: textarea
+    id: external-api-example
+    attributes:
+      label: API data example
+    validations:
+      required: true
+
+  - type: input
+    id: external-api-form
+    attributes:
+      label: API data format or link to
+      description: File type, character code, data format
+    validations:
+      required: true
+
+  - type: textarea
+    id: external-api-license
+    attributes:
+      label: API license information and link to
+    validations:
+      required: true
+
+  - type: textarea
+    id: external-api-additional-info
+    attributes:
+      label: Additional information of the API
+      description: Please describe the plan (fee), e.t.c.
     validations:
       required: true
