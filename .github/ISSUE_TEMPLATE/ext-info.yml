@@ -37,17 +37,17 @@ body:
       required: true
 
   - type: textarea
-    id: external-api-example
-    attributes:
-      label: API data example
-    validations:
-      required: true
-
-  - type: input
     id: external-api-form
     attributes:
       label: API data format or link to
       description: File type, character code, data format
+    validations:
+      required: true
+
+  - type: textarea
+    id: external-api-example
+    attributes:
+      label: API data example
     validations:
       required: true
 
