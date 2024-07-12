@@ -36,13 +36,6 @@ body:
     validations:
       required: true
 
-  - type: input
-    id: external-api-type
-    attributes:
-      label: API data type
-    validations:
-      required: true
-
   - type: textarea
     id: external-api-example
     attributes:
@@ -53,7 +46,8 @@ body:
   - type: input
     id: external-api-form
     attributes:
-      label: API data type or link to
+      label: API data format or link to
+      description: File type, character code, data format
     validations:
       required: true
 
@@ -68,6 +62,6 @@ body:
     id: external-api-additional-info
     attributes:
       label: Additional information of the API
-      description: Please describe the plan (fee), character code e.t.c.
+      description: Please describe the plan (fee), e.t.c.
     validations:
       required: true
