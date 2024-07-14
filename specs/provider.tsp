@@ -2,14 +2,14 @@ import "@typespec/http";
 import "@typespec/rest";
 import "@typespec/versioning";
 
-import "./algorithm.tsp";
+import "./koyo.tsp";
 import "./types.tsp";
 
 using TypeSpec.Http;
 using TypeSpec.Rest;
 using TypeSpec.Versioning;
 
-using BeLifeline.Algorithm;
+using BeLifeline.Koyo;
 using BeLifeline.Types;
 
 @versioned(Versions)
@@ -49,20 +49,20 @@ namespace BeLifeline.Provider {
 
   @route("/data")
   interface Data {
-    @get list(@query limit?: int32): AlgorithmInfomation[];
+    @get list(@query limit?: int32): KoyoInfomation[];
   }
 
   @route("/data/{altorithm_id}")
   interface EachData {
     @get get(
-      @path altorithm_id: algorithmId,
+      @path altorithm_id: koyoId,
       @query type: RequestType,
-      @query algorithm_data_id?: algorithmDataId,
+      @query koyo_data_id?: koyoDataId,
       @query area?: GeoJSON.MultiPolygon,
       @query until?: Date.DateUntil,
       @query until_entry?: Date.DateUntil,
       @query param?: Record<string>,
-      @query scale?: algorithmScale,
-    ): AlgorithmData;
+      @query scale?: koyoScale,
+    ): KoyoData;
   }
 }

@@ -2,7 +2,7 @@ import "@typespec/http";
 import "@typespec/rest";
 import "@typespec/openapi3";
 
-import "./algorithm.tsp";
+import "./koyo.tsp";
 import "./extinfo.tsp";
 import "./provider.tsp";
 import "./types.tsp";
@@ -10,7 +10,7 @@ import "./types.tsp";
 using TypeSpec.Http;
 using TypeSpec.Rest;
 
-using BeLifeline.Algorithm;
+using BeLifeline.Koyo;
 using BeLifeline.ExtInfo;
 using BeLifeline.Provider;
 using BeLifeline.Types;
@@ -20,16 +20,16 @@ using BeLifeline.Types;
 @doc("Admin API")
 @useAuth(ApiKeyAuth<ApiKeyLocation.query, "api_key">)
 namespace BeLifeline.Admin {
-  @route("/algorithm")
-  interface Algorithm {
-    @post create(algorithm: AlgorithmInfomation): AlgorithmInfomation & {
+  @route("/koyo")
+  interface Koyo {
+    @post create(koyo: KoyoInfomation): KoyoInfomation & {
       @secret
       api_key: Auth.apiKey;
     };
-    @route("/{algorithm_id}")
+    @route("/{koyo_id}")
     @delete
-    delete(@path algorithm_id: algorithmId): {
-      delete_algorithm_id: algorithmId;
+    delete(@path koyo_id: koyoId): {
+      delete_koyo_id: koyoId;
     };
   }
 
