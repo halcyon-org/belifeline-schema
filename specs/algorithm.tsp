@@ -54,6 +54,7 @@ model AlgorithmInfomation {
   last_updated_at: utcDateTime;
 
   @visibility
+  @secret
   secret_api_key: Auth.apiKey;
 }
 

@@ -32,6 +32,7 @@ model ClientData {
   name: string;
 
   @visibility("read", "query")
+  @secret
   api_key: Auth.apiKey;
 }
 

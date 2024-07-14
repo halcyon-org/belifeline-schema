@@ -23,6 +23,7 @@ namespace BeLifeline.Admin {
   @route("/algorithm")
   interface Algorithm {
     @post create(algorithm: AlgorithmInfomation): AlgorithmInfomation & {
+      @secret
       api_key: Auth.apiKey;
     };
     @route("/{algorithm_id}")
