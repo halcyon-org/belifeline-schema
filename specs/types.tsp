@@ -16,6 +16,7 @@ namespace Common {
   scalar version extends string;
 }
 
+model UtcDateTime is TypeSpec.Protobuf.WellKnown.Timestamp;
 @doc("https://ja.wikipedia.org/wiki/GeoJSON")
 namespace GeoJSON {
   model Point {
@@ -38,11 +39,12 @@ namespace GeoJSON {
 
 namespace Date {
   model DateUntil {
-    before?: utcDateTime;
-    after?: utcDateTime;
+    before?: UtcDateTime;
+    after?: UtcDateTime;
   }
 }
 
 namespace Auth {
+  @secret
   scalar apiKey extends string;
 }

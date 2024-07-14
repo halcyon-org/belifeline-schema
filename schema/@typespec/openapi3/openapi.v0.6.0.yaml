@@ -35,11 +35,6 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/ExtInfo.ExtInfoId'
-                  algorithm_params:
-                    type: object
-                    additionalProperties:
-                      type: string
-                    description: 'param name: param default'
                   algorithm_scales:
                     type: array
                     items:
@@ -51,14 +46,11 @@ paths:
                   version:
                     $ref: '#/components/schemas/Types.Common.version'
                   first_entry_at:
-                    type: string
-                    format: date-time
+                    $ref: '#/components/schemas/Types.UtcDateTime'
                   last_entry_at:
-                    type: string
-                    format: date-time
+                    $ref: '#/components/schemas/Types.UtcDateTime'
                   last_updated_at:
-                    type: string
-                    format: date-time
+                    $ref: '#/components/schemas/Types.UtcDateTime'
                   api_key:
                     $ref: '#/components/schemas/Types.Auth.apiKey'
                 required:
@@ -66,7 +58,6 @@ paths:
                   - algorithm_name
                   - algorithm_description
                   - need_external
-                  - algorithm_params
                   - algorithm_scales
                   - algorithm_data_ids
                   - version
@@ -232,9 +223,14 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Algorithm.AlgorithmInfomation'
+                type: object
+                properties:
+                  algorithms:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Algorithm.AlgorithmInfomation'
+                required:
+                  - algorithms
       security:
         - ApiKeyAuth: []
   /algorithm/{algorithm_id}:
@@ -260,12 +256,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                update_algorithm:
-                  $ref: '#/components/schemas/Algorithm.AlgorithmInfomationCreateOrUpdate'
-              required:
-                - update_algorithm
+              $ref: '#/components/schemas/Algorithm.AlgorithmInfomationCreateOrUpdate'
       security:
         - ApiKeyAuth: []
     get:
@@ -339,12 +330,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                update_data:
-                  $ref: '#/components/schemas/Algorithm.AlgorithmDataCreateOrUpdate'
-              required:
-                - update_data
+              $ref: '#/components/schemas/Algorithm.AlgorithmDataCreateOrUpdate'
       security:
         - ApiKeyAuth: []
   /extinfo:
@@ -566,11 +552,9 @@ components:
           type: string
           format: byte
         entry_at:
-          type: string
-          format: date-time
+          $ref: '#/components/schemas/Types.UtcDateTime'
         target_at:
-          type: string
-          format: date-time
+          $ref: '#/components/schemas/Types.UtcDateTime'
     Algorithm.AlgorithmDataCreateOrUpdate:
       type: object
       required:
@@ -598,7 +582,6 @@ components:
         - algorithm_name
         - algorithm_description
         - need_external
-        - algorithm_params
         - algorithm_scales
         - algorithm_data_ids
         - version
@@ -618,11 +601,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ExtInfo.ExtInfoId'
-        algorithm_params:
-          type: object
-          additionalProperties:
-            type: string
-          description: 'param name: param default'
         algorithm_scales:
           type: array
           items:
@@ -634,21 +612,17 @@ components:
         version:
           $ref: '#/components/schemas/Types.Common.version'
         first_entry_at:
-          type: string
-          format: date-time
+          $ref: '#/components/schemas/Types.UtcDateTime'
         last_entry_at:
-          type: string
-          format: date-time
+          $ref: '#/components/schemas/Types.UtcDateTime'
         last_updated_at:
-          type: string
-          format: date-time
+          $ref: '#/components/schemas/Types.UtcDateTime'
     Algorithm.AlgorithmInfomationCreate:
       type: object
       required:
         - algorithm_name
         - algorithm_description
         - need_external
-        - algorithm_params
         - algorithm_scales
         - algorithm_data_ids
         - version
@@ -661,11 +635,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ExtInfo.ExtInfoId'
-        algorithm_params:
-          type: object
-          additionalProperties:
-            type: string
-          description: 'param name: param default'
         algorithm_scales:
           type: array
           items:
@@ -683,7 +652,6 @@ components:
         - algorithm_name
         - algorithm_description
         - need_external
-        - algorithm_params
         - algorithm_scales
         - algorithm_data_ids
         - version
@@ -700,11 +668,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ExtInfo.ExtInfoId'
-        algorithm_params:
-          type: object
-          additionalProperties:
-            type: string
-          description: 'param name: param default'
         algorithm_scales:
           type: array
           items:
@@ -716,6 +679,14 @@ components:
         version:
           $ref: '#/components/schemas/Types.Common.version'
     Algorithm.DataType:
+      oneOf:
+        - type: string
+        - type: string
+          enum:
+            - image
+            - csv
+            - json
+    Algorithm.DataTypeName:
       type: string
       enum:
         - image
@@ -733,6 +704,12 @@ components:
       type: number
       format: float
     ExtInfo.ExtInfoId:
+      oneOf:
+        - type: string
+        - type: string
+          enum:
+            - HOGE_ID
+    ExtInfo.ExtInfoIdName:
       type: string
       enum:
         - HOGE_ID
@@ -753,16 +730,13 @@ components:
         external_description:
           type: string
         first_entry_at:
-          type: string
-          format: date-time
+          $ref: '#/components/schemas/Types.UtcDateTime'
         last_updated_at:
-          type: string
-          format: date-time
+          $ref: '#/components/schemas/Types.UtcDateTime'
         updated_history:
           type: array
           items:
-            type: string
-            format: date-time
+            $ref: '#/components/schemas/Types.UtcDateTime'
     ExtInfo.ExternalInfomationCreate:
       type: object
       required:
@@ -777,16 +751,13 @@ components:
         external_description:
           type: string
         first_entry_at:
-          type: string
-          format: date-time
+          $ref: '#/components/schemas/Types.UtcDateTime'
         last_updated_at:
-          type: string
-          format: date-time
+          $ref: '#/components/schemas/Types.UtcDateTime'
         updated_history:
           type: array
           items:
-            type: string
-            format: date-time
+            $ref: '#/components/schemas/Types.UtcDateTime'
     ExtInfo.Versions:
       type: string
       enum:
@@ -828,6 +799,7 @@ components:
         - lastest
     Types.Auth.apiKey:
       type: string
+      format: password
     Types.Common.version:
       type: string
       pattern: ^\d+\.\d+\.\d+$
@@ -836,11 +808,9 @@ components:
       type: object
       properties:
         before:
-          type: string
-          format: date-time
+          $ref: '#/components/schemas/Types.UtcDateTime'
         after:
-          type: string
-          format: date-time
+          $ref: '#/components/schemas/Types.UtcDateTime'
     Types.GeoJSON.MultiPoint:
       type: object
       required:
@@ -901,6 +871,12 @@ components:
           items:
             type: array
             items: {}
+    Types.UtcDateTime:
+      type: object
+      description: |-
+        A timestamp.
+
+        This model references `google.protobuf.Timestamp` from `google/protobuf/timestamp.proto`.
     Types.Versions:
       type: string
       enum:

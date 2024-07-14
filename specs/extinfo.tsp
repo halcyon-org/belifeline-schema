@@ -16,7 +16,9 @@ enum Versions {
   latest: "lastest",
 }
 
-enum ExtInfoId {
+@knownValues(ExtInfoIdName)
+scalar ExtInfoId extends string;
+enum ExtInfoIdName {
   hoge: "HOGE_ID",
 }
 
@@ -26,9 +28,9 @@ model ExternalInfomation {
 
   external_name: string;
   external_description: string;
-  first_entry_at: utcDateTime;
-  last_updated_at: utcDateTime;
-  updated_history: utcDateTime[];
+  first_entry_at: UtcDateTime;
+  last_updated_at: UtcDateTime;
+  updated_history: UtcDateTime[];
 }
 
 @route("/extinfo")

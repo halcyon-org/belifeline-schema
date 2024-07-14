@@ -1,4 +1,5 @@
 import "@typespec/versioning";
+import "@typespec/protobuf";
 
 import "./server.tsp";
 import "./algorithm.tsp";
