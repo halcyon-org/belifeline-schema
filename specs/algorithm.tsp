@@ -81,7 +81,6 @@ model AlgorithmData {
 @route("/algorithm")
 @tag("Algorithm")
 @doc("Algorithm API")
-@useAuth(ApiKeyAuth<ApiKeyLocation.query, "api_key">)
 namespace BeLifeline.Algorithm {
   interface Algorithm {
     @get list(@query limit?: int32): AlgorithmInfomation[];
@@ -90,14 +89,17 @@ namespace BeLifeline.Algorithm {
   @route("/{algorithm_id}")
   interface EachAlgorithm {
     @put
+    @useAuth(ApiKeyAuth<ApiKeyLocation.query, "api_key">)
     update(
       @path algorithm_id: algorithmId,
       update_algorithm: AlgorithmInfomation,
     ): AlgorithmInfomation;
-    @get get(@path algorithm_id: algorithmId): AlgorithmInfomation;
+    @get
+    get(@path algorithm_id: algorithmId): AlgorithmInfomation;
   }
 
   @route("/{algorithm_id}/data")
+  @useAuth(ApiKeyAuth<ApiKeyLocation.query, "api_key">)
   interface EachAlgorithmData {
     @put
     update(
