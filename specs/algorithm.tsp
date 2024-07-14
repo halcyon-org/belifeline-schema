@@ -64,6 +64,13 @@ model AlgorithmInfomation {
   @summary("Algorithm version")
   version: Common.version;
 
+  @summary("Algorithm license")
+  license: string;
+
+  @summary("Algorithm source license for use")
+  @doc("Licenses for primary information and other information used by the algorithm.")
+  ext_licenses: string[];
+
   @visibility("read", "query")
   first_entry_at: utcDateTime;
 

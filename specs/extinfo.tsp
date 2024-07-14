@@ -24,6 +24,8 @@ model ExternalInfomation {
   @visibility("read", "query", "update", "delete")
   external_id: ExtInfoId;
 
+  license: string;
+  license_description: string;
   external_name: string;
   external_description: string;
   first_entry_at: utcDateTime;

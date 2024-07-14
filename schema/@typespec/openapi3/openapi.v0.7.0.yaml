@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: BeLifeline Server API
-  version: v0.6.1
+  version: v0.7.0
 tags:
   - name: Server
   - name: Algorithm
@@ -62,6 +62,15 @@ paths:
                     allOf:
                       - $ref: '#/components/schemas/Types.Common.version'
                     title: Algorithm version
+                  license:
+                    type: string
+                    title: Algorithm license
+                  ext_licenses:
+                    type: array
+                    items:
+                      type: string
+                    description: Licenses for primary information and other information used by the algorithm.
+                    title: Algorithm source license for use
                   first_entry_at:
                     type: string
                     format: date-time
@@ -84,6 +93,8 @@ paths:
                   - algorithm_scales
                   - algorithm_data_ids
                   - version
+                  - license
+                  - ext_licenses
                   - first_entry_at
                   - last_entry_at
                   - last_updated_at
@@ -625,6 +636,8 @@ components:
         - algorithm_scales
         - algorithm_data_ids
         - version
+        - license
+        - ext_licenses
         - first_entry_at
         - last_entry_at
         - last_updated_at
@@ -668,6 +681,15 @@ components:
           allOf:
             - $ref: '#/components/schemas/Types.Common.version'
           title: Algorithm version
+        license:
+          type: string
+          title: Algorithm license
+        ext_licenses:
+          type: array
+          items:
+            type: string
+          description: Licenses for primary information and other information used by the algorithm.
+          title: Algorithm source license for use
         first_entry_at:
           type: string
           format: date-time
@@ -689,6 +711,8 @@ components:
         - algorithm_scales
         - algorithm_data_ids
         - version
+        - license
+        - ext_licenses
       properties:
         algorithm_name:
           type: string
@@ -724,6 +748,15 @@ components:
           allOf:
             - $ref: '#/components/schemas/Types.Common.version'
           title: Algorithm version
+        license:
+          type: string
+          title: Algorithm license
+        ext_licenses:
+          type: array
+          items:
+            type: string
+          description: Licenses for primary information and other information used by the algorithm.
+          title: Algorithm source license for use
       description: Basic information about the algorithm.
       title: Algorithm information
     Algorithm.AlgorithmInfomationCreateOrUpdate:
@@ -737,6 +770,8 @@ components:
         - algorithm_scales
         - algorithm_data_ids
         - version
+        - license
+        - ext_licenses
       properties:
         algorithm_id:
           allOf:
@@ -777,6 +812,15 @@ components:
           allOf:
             - $ref: '#/components/schemas/Types.Common.version'
           title: Algorithm version
+        license:
+          type: string
+          title: Algorithm license
+        ext_licenses:
+          type: array
+          items:
+            type: string
+          description: Licenses for primary information and other information used by the algorithm.
+          title: Algorithm source license for use
       description: Basic information about the algorithm.
       title: Algorithm information
     Algorithm.DataType:
@@ -806,6 +850,8 @@ components:
       type: object
       required:
         - external_id
+        - license
+        - license_description
         - external_name
         - external_description
         - first_entry_at
@@ -814,6 +860,10 @@ components:
       properties:
         external_id:
           $ref: '#/components/schemas/ExtInfo.ExtInfoId'
+        license:
+          type: string
+        license_description:
+          type: string
         external_name:
           type: string
         external_description:
@@ -832,12 +882,18 @@ components:
     ExtInfo.ExternalInfomationCreate:
       type: object
       required:
+        - license
+        - license_description
         - external_name
         - external_description
         - first_entry_at
         - last_updated_at
         - updated_history
       properties:
+        license:
+          type: string
+        license_description:
+          type: string
         external_name:
           type: string
         external_description:
@@ -980,7 +1036,7 @@ components:
     Versions:
       type: string
       enum:
-        - v0.6.1
+        - v0.7.0
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
