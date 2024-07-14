@@ -26,5 +26,5 @@ enum Versions {
   @useDependency(BeLifeline.ExtInfo.Versions.latest)
   @useDependency(BeLifeline.Provider.Versions.latest)
   @useDependency(BeLifeline.Types.Versions.latest)
-  v0: "v0.6.0",
+  v0: "v0.6.1",
 }

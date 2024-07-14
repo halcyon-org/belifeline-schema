@@ -18,7 +18,7 @@ enum Versions {
   latest: "latest",
 }
 
-scalar clientId extends string;
+scalar clientId extends Common.uuid;
 
 enum RequestType {
   TileMapService,

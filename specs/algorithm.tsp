@@ -19,8 +19,8 @@ enum Versions {
   latest: "lastest",
 }
 
-scalar algorithmId extends string;
-scalar algorithmDataId extends string;
+scalar algorithmId extends Common.uuid;
+scalar algorithmDataId extends Common.uuid;
 scalar algorithmScale extends float32;
 enum DataType {
   image,
@@ -98,11 +98,6 @@ namespace BeLifeline.Algorithm {
 
   @route("/{algorithm_id}/data")
   interface EachAlgorithmData {
-    @get
-    get(
-      @path algorithm_id: algorithmId,
-      @query scale: algorithmScale,
-    ): AlgorithmData;
     @put
     update(
       @path algorithm_id: algorithmId,
