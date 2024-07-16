@@ -59,7 +59,19 @@ namespace BeLifeline.Admin {
 
   @route("/extinfo")
   interface ExtInfo {
-    @post create(extinfo: ExternalInfomation): ExternalInfomation;
+    @post create(extinfo: ExternalInfomation): ExternalInfomation & {
+      @secret
+      api_key: Auth.apiKey;
+    };
+
+    @route("/{extinfo_id}")
+    @put
+    revoke(@path extinfo_id: ExtInfoId): {
+      extinfo_id: ExtInfoId;
+
+      @secret
+      api_key: Auth.apiKey;
+    };
 
     @route("/{extinfo_id}")
     @delete
@@ -72,6 +84,7 @@ namespace BeLifeline.Admin {
   interface Client {
     @post create(client: ClientData): ClientData;
     @get list(@query limit?: int32): ClientData[];
+    @put revoke(@query client_id: clientId): ClientData;
     @route("/{client_id}")
     @post
     delete(@path client_id: clientId): {
