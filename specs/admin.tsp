@@ -15,20 +15,44 @@ using BeLifeline.ExtInfo;
 using BeLifeline.Provider;
 using BeLifeline.Types;
 
+/**
+ * The admin api is the endpoint that the belifeline administrator (=developer) accesses to configure the server.
+ * Therefore, it is not open to the public.
+ */
 @route("/admin")
 @tag("Admin")
-@doc("Admin API")
+@summary("Admin API")
 @useAuth(ApiKeyAuth<ApiKeyLocation.query, "api_key">)
 namespace BeLifeline.Admin {
   @route("/koyo")
   interface Koyo {
-    @post create(koyo: KoyoInfomation): KoyoInfomation & {
+    /**
+     * Set up koyo's basic information and register it in the database.
+     * You can get koyo_id by hitting this endpoint.
+     * For updating basic information, please use /koyo api instead of admin api
+     */
+    @summary("Create new koyo information")
+    @post
+    create(koyo: KoyoInfomation): KoyoInfomation & {
       @secret
       api_key: Auth.apiKey;
     };
+
+    @route("/{koyo_id}")
+    @put
+    @summary("Revoke koyo api key")
+    revoke(@path koyo_id: koyoId): {
+      koyo_id: koyoId;
+
+      @secret
+      api_key: Auth.apiKey;
+    };
+
     @route("/{koyo_id}")
     @delete
+    @summary("Delete koyo information")
     delete(@path koyo_id: koyoId): {
+      @summary("Deleted koyo id")
       delete_koyo_id: koyoId;
     };
   }
