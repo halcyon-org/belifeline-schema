@@ -47,6 +47,7 @@ namespace BeLifeline.Admin {
   @route("/client")
   interface Client {
     @post create(client: ClientData): ClientData;
+    @get list(@query limit?: int32): ClientData[];
     @route("/{client_id}")
     @post
     delete(@path client_id: clientId): {

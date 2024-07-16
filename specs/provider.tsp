@@ -25,36 +25,46 @@ enum RequestType {
   GeoJSON,
 }
 
+@summary("Client data")
+@doc("Data for the client to use the provider api.")
 model ClientData {
   @visibility("read", "query", "update", "delete")
   client_id: clientId;
 
-  name: string;
+  username: string;
 
   @visibility("read", "query")
   @secret
   api_key: Auth.apiKey;
+
+  @visibility("read", "query")
+  created_at: utcDateTime;
+
+  @doc("The last time the client used the api.")
+  @visibility("read", "query")
+  last_used_at: utcDateTime;
+
+  @doc("The last time the client updated the data.")
+  @visibility("read", "query")
+  last_updated_at: utcDateTime;
 }
 
 @route("/provider")
 @tag("Provider")
 @useAuth(ApiKeyAuth<ApiKeyLocation.query, "api_key">)
 namespace BeLifeline.Provider {
-  @route("/clients")
-  interface Clients {
-    @doc("Get client of api key")
-    @get
-    getClient(): ClientData;
-  }
-
   @route("/data")
   interface Data {
-    @get list(@query limit?: int32): KoyoInfomation[];
+    @summary("List of koyo's basic information")
+    @get
+    list(@query limit?: int32): KoyoInfomation[];
   }
 
   @route("/data/{altorithm_id}")
   interface EachData {
-    @get get(
+    @summary("Get data from the koyo")
+    @get
+    get(
       @path altorithm_id: koyoId,
       @query type: RequestType,
       @query koyo_data_id?: koyoDataId,
