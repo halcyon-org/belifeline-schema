@@ -38,8 +38,8 @@ namespace BeLifeline.Admin {
       api_key: Auth.apiKey;
     };
 
-    @route("/{koyo_id}")
-    @put
+    @route("/{koyo_id}/revoke")
+    @post
     @summary("Revoke koyo api key")
     revoke(@path koyo_id: koyoId): {
       koyo_id: koyoId;
@@ -64,8 +64,8 @@ namespace BeLifeline.Admin {
       api_key: Auth.apiKey;
     };
 
-    @route("/{extinfo_id}")
-    @put
+    @route("/{extinfo_id}/revoke")
+    @post
     revoke(@path extinfo_id: ExtInfoId): {
       extinfo_id: ExtInfoId;
 
@@ -84,11 +84,18 @@ namespace BeLifeline.Admin {
   interface Client {
     @post create(client: ClientData): ClientData;
     @get list(@query limit?: int32): ClientData[];
-    @put revoke(@query client_id: clientId): ClientData;
     @route("/{client_id}")
     @post
     delete(@path client_id: clientId): {
       delete_client_id: clientId;
+    };
+    @route("/{client_id}/revoke")
+    @post
+    revoke(@path client_id: clientId): {
+      client_id: clientId;
+
+      @secret
+      api_key: Auth.apiKey;
     };
   }
 }
