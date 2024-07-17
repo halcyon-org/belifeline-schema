@@ -714,6 +714,7 @@ components:
         image:
           type: string
           format: byte
+      title: Example data
     ExtInfo.ExtInfoId:
       type: string
       enum:
