@@ -15,6 +15,7 @@ enum Versions {
 @route("/")
 @tag("Server")
 namespace BeLifeline.Server {
+  @summary("Server status")
   @route("/status")
   interface Status {
     @get get(): {

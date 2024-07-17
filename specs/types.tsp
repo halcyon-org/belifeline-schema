@@ -14,6 +14,9 @@ namespace Common {
   @doc("Semantic versioning")
   @pattern("^\\d+\\.\\d+\\.\\d+$")
   scalar version extends string;
+
+  @format("uuid")
+  scalar uuid extends string;
 }
 
 @doc("https://ja.wikipedia.org/wiki/GeoJSON")
