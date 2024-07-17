@@ -1,7 +1,9 @@
+name: Main CI
+
 on: pull_request
 
 jobs:
-  lint:
+  format_check:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -19,12 +21,75 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: Format
         run: pnpm run format
+      - name: Check diff
+        run: |
+          if [[ `git status --porcelain` ]]; then
+            exit 1
+          fi
+  lint_check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: pnpm
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
       - name: Lint
         run: pnpm run lint
-      - name: Bundle Check
-        run: pnpm run bundle
+      - name: Check diff
+        run: |
+          if [[ `git status --porcelain` ]]; then
+            exit 1
+          fi
+  compile_check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: pnpm
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
       - name: Compile
         run: pnpm run compile
+      - name: Check diff
+        run: |
+          if [[ `git status --porcelain` ]]; then
+            exit 1
+          fi
+  bundle_check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: pnpm
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Bundle Check
+        run: pnpm run bundle
       - name: Check diff
         run: |
           if [[ `git status --porcelain` ]]; then
