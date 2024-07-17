@@ -158,8 +158,8 @@ namespace BeLifeline.Koyo {
   @route("/{koyo_id}/data")
   @useAuth(ApiKeyAuth<ApiKeyLocation.query, "api_key">)
   interface EachKoyoData {
-    @summary("Put new data of own koyo")
-    @put
+    @summary("Post new data of own koyo")
+    @post
     new(@path koyo_id: koyoId, update_data: KoyoData): KoyoData;
   }
 }
