@@ -61,13 +61,25 @@ namespace BeLifeline.ExtInfo {
     get(@path extinfo_id: ExtInfoId): ExternalInfomation;
   }
 
-  @route("/example_id/data")
-  interface ExampleInfo {
-    @summary("Get example data endpoint")
-    @get
-    get(@query area?: GeoJSON.MultiPolygon): {
-      @header contentType: "image/jpeg";
-      @body image: bytes;
-    }[];
+  namespace ExampleInfo {
+    @summary("Example data")
+    model ExampleData {
+      area: GeoJSON.MultiPolygon;
+      image: bytes;
+    }
+
+    @route("/example_id/data")
+    interface ExampleInfo {
+      @summary("Get example data endpoint")
+      @get
+      get(@query area?: GeoJSON.MultiPolygon): {
+        @header contentType: "image/jpeg";
+        @body data: ExampleData;
+      }[];
+
+      @summary("Post example data endpoint")
+      @post
+      post(data: ExampleData[]): void;
+    }
   }
 }
