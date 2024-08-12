@@ -15,8 +15,8 @@ importers:
         specifier: latest
         version: 0.59.0(@typespec/compiler@0.59.0)
       '@typespec/json-schema':
-        specifier: ^0.58.0
-        version: 0.58.0(@typespec/compiler@0.59.0)
+        specifier: ^0.59.0
+        version: 0.59.0(@typespec/compiler@0.59.0)
       '@typespec/openapi3':
         specifier: latest
         version: 0.59.0(@typespec/compiler@0.59.0)(@typespec/http@0.59.0(@typespec/compiler@0.59.0))(@typespec/openapi@0.56.0(@typespec/compiler@0.59.0)(@typespec/http@0.59.0(@typespec/compiler@0.59.0)))(@typespec/versioning@0.59.0(@typespec/compiler@0.59.0))(openapi-types@12.1.3)
@@ -560,11 +560,11 @@ packages:
     peerDependencies:
       '@typespec/compiler': ~0.59.0
 
-  '@typespec/json-schema@0.58.0':
-    resolution: {integrity: sha512-hzhIYmTuUh7pLcyZCElHrtVbhzW+QLetdh/GsRSrTLX/4CrbwrN9IZH5MUofHTX0nfRF03ole7O9a7RTCvRs6g==}
+  '@typespec/json-schema@0.59.0':
+    resolution: {integrity: sha512-pEljn1lZNx3eNkqMmhl1yjFHy0MzGumm1DPYpEzDHEt0DEdPJe8/dN44T26XG3wA4p134ph4YMr8+d+GRLTRLQ==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
-      '@typespec/compiler': ~0.58.0
+      '@typespec/compiler': ~0.59.0
 
   '@typespec/openapi3@0.59.0':
     resolution: {integrity: sha512-xwdWPPRtjsLxXjsebNppaHrFPF6rJiWkAEHCsK0elwvaPSruZvYfPhXpx1HnNkC2glb0NHgmxvXg7EmMwIYYcA==}
@@ -3167,7 +3167,7 @@ snapshots:
     dependencies:
       '@typespec/compiler': 0.59.0
 
-  '@typespec/json-schema@0.58.0(@typespec/compiler@0.59.0)':
+  '@typespec/json-schema@0.59.0(@typespec/compiler@0.59.0)':
     dependencies:
       '@typespec/compiler': 0.59.0
       yaml: 2.4.5
