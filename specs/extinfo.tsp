@@ -10,6 +10,9 @@ using TypeSpec.Versioning;
 
 using BeLifeline.Types;
 
+@route("/extinfo")
+@tag("External Information")
+@useAuth(ApiKeyAuth<ApiKeyLocation.query, "api_key">)
 @versioned(Versions)
 namespace BeLifeline.ExtInfo;
 enum Versions {
@@ -49,37 +52,32 @@ model ExternalInfomation {
   updated_history: utcDateTime[];
 }
 
-@route("/extinfo")
-@tag("External Information")
-@useAuth(ApiKeyAuth<ApiKeyLocation.query, "api_key">)
-namespace BeLifeline.ExtInfo {
-  @summary("Basic infomation about external information")
-  interface ExtInfo {
-    @get list(@query limit?: int32): ExternalInfomation[];
-    @route("/{extinfo_id}")
-    @get
-    get(@path extinfo_id: ExtInfoId): ExternalInfomation;
+@summary("Basic infomation about external information")
+interface ExtInfo {
+  @get list(@query limit?: int32): ExternalInfomation[];
+  @route("/{extinfo_id}")
+  @get
+  get(@path extinfo_id: ExtInfoId): ExternalInfomation;
+}
+
+namespace ExampleInfo {
+  @summary("Example data")
+  model ExampleData {
+    area: GeoJSON.MultiPolygon;
+    image: bytes;
   }
 
-  namespace ExampleInfo {
-    @summary("Example data")
-    model ExampleData {
-      area: GeoJSON.MultiPolygon;
-      image: bytes;
-    }
+  @route("/example_id/data")
+  interface ExampleInfo {
+    @summary("Get example data endpoint")
+    @get
+    get(@query area?: GeoJSON.MultiPolygon): {
+      @header contentType: "image/jpeg";
+      @body data: ExampleData;
+    }[];
 
-    @route("/example_id/data")
-    interface ExampleInfo {
-      @summary("Get example data endpoint")
-      @get
-      get(@query area?: GeoJSON.MultiPolygon): {
-        @header contentType: "image/jpeg";
-        @body data: ExampleData;
-      }[];
-
-      @summary("Post example data endpoint")
-      @post
-      post(data: ExampleData[]): void;
-    }
+    @summary("Post example data endpoint")
+    @post
+    post(data: ExampleData[]): void;
   }
 }
