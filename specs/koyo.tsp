@@ -13,6 +13,9 @@ using TypeSpec.Versioning;
 using BeLifeline.ExtInfo;
 using BeLifeline.Types;
 
+@route("/koyo")
+@tag("Koyo")
+@doc("Koyo API")
 @versioned(Versions)
 namespace BeLifeline.Koyo;
 enum Versions {
@@ -134,32 +137,30 @@ model KoyoData {
   target_at: utcDateTime;
 }
 
-@route("/koyo")
-@tag("Koyo")
-@doc("Koyo API")
-namespace BeLifeline.Koyo {
-  interface Koyo {
-    @summary("Get a list of koyos' basic information")
-    @get
-    list(@query limit?: int32): KoyoInfomation[];
-  }
+interface Koyo {
+  @summary("Get a list of koyos' basic information")
+  @get
+  list(@query limit?: int32): KoyoInfomation[];
+}
 
-  @route("/{koyo_id}")
-  interface EachKoyo {
-    @summary("Update information on own koyo")
-    @put
-    @useAuth(ApiKeyAuth<ApiKeyLocation.query, "api_key">)
-    update(@path koyo_id: koyoId, update_koyo: KoyoInfomation): KoyoInfomation;
-    @summary("Get koyos' basic information")
-    @get
-    get(@path koyo_id: koyoId): KoyoInfomation;
-  }
-
-  @route("/{koyo_id}/data")
+@route("/{koyo_id}")
+interface EachKoyo {
+  @summary("Update information on own koyo")
+  @put
   @useAuth(ApiKeyAuth<ApiKeyLocation.query, "api_key">)
-  interface EachKoyoData {
-    @summary("Post new data of own koyo")
-    @post
-    new(@path koyo_id: koyoId, update_data: KoyoData): KoyoData;
-  }
+  update(
+    @path koyo_id: koyoId,
+    @body update_koyo: KoyoInfomation,
+  ): KoyoInfomation;
+  @summary("Get koyos' basic information")
+  @get
+  get(@path koyo_id: koyoId): KoyoInfomation;
+}
+
+@route("/{koyo_id}/data")
+@useAuth(ApiKeyAuth<ApiKeyLocation.query, "api_key">)
+interface EachKoyoData {
+  @summary("Post new data of own koyo")
+  @post
+  new(@path koyo_id: koyoId, @body update_data: KoyoData): KoyoData;
 }
