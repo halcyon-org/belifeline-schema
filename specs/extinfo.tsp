@@ -78,6 +78,6 @@ namespace ExampleInfo {
 
     @summary("Post example data endpoint")
     @post
-    post(data: ExampleData[]): void;
+    post(@body data: ExampleData[]): void;
   }
 }
