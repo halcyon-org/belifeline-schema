@@ -24,6 +24,7 @@ jobs:
       - name: Check diff
         run: |
           if [[ `git status --porcelain` ]]; then
+            git diff
             exit 1
           fi
   lint_check:
@@ -47,6 +48,7 @@ jobs:
       - name: Check diff
         run: |
           if [[ `git status --porcelain` ]]; then
+            git diff
             exit 1
           fi
   compile_check:
@@ -70,6 +72,7 @@ jobs:
       - name: Check diff
         run: |
           if [[ `git status --porcelain` ]]; then
+            git diff
             exit 1
           fi
   bundle_check:
@@ -93,5 +96,6 @@ jobs:
       - name: Check diff
         run: |
           if [[ `git status --porcelain` ]]; then
+            git diff
             exit 1
           fi
