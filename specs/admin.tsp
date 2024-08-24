@@ -33,7 +33,7 @@ namespace BeLifeline.Admin {
      */
     @summary("Create new koyo information")
     @post
-    create(koyo: KoyoInfomation): KoyoInfomation & {
+    create(@body koyo: KoyoInfomation): KoyoInfomation & {
       @secret
       api_key: Auth.apiKey;
     };
@@ -59,7 +59,7 @@ namespace BeLifeline.Admin {
 
   @route("/extinfo")
   interface ExtInfo {
-    @post create(extinfo: ExternalInfomation): ExternalInfomation & {
+    @post create(@body extinfo: ExternalInfomation): ExternalInfomation & {
       @secret
       api_key: Auth.apiKey;
     };
@@ -82,7 +82,7 @@ namespace BeLifeline.Admin {
 
   @route("/client")
   interface Client {
-    @post create(client: ClientData): ClientData;
+    @post create(@body client: ClientData): ClientData;
     @get list(@query limit?: int32): ClientData[];
     @route("/{client_id}")
     @post

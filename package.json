@@ -23,10 +23,10 @@
     "@typespec/versioning": "latest"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.25.2",
-    "@redocly/cli": "^1.19.0",
-    "@types/node": "^20.14.15",
-    "eslint": "^9.9.0",
+    "@antfu/eslint-config": "^2.27.1",
+    "@redocly/cli": "^1.21.0",
+    "@types/node": "^20.16.1",
+    "eslint": "^9.9.1",
     "tsx": "^4.17.0",
     "typescript": "^5.5.4"
   }
