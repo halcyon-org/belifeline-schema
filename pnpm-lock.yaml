@@ -31,8 +31,8 @@ importers:
         specifier: ^2.27.3
         version: 2.27.3(@typescript-eslint/utils@8.3.0(eslint@9.10.0)(typescript@5.6.2))(@vue/compiler-sfc@3.4.27)(eslint@9.10.0)(typescript@5.6.2)
       '@redocly/cli':
-        specifier: ^1.25.0
-        version: 1.25.0(enzyme@3.11.0)
+        specifier: ^1.25.2
+        version: 1.25.2(enzyme@3.11.0)
       '@types/node':
         specifier: ^20.16.5
         version: 20.16.5
@@ -403,16 +403,16 @@ packages:
   '@redocly/ajv@8.11.2':
     resolution: {integrity: sha512-io1JpnwtIcvojV7QKDUSIuMN/ikdOUd1ReEnUnMKGfDVridQZ31J0MmIuqwuRjWDZfmvr+Q0MqCcfHM2gTivOg==}
 
-  '@redocly/cli@1.25.0':
-    resolution: {integrity: sha512-ee3id6RAmq0rpS/oXZlEkJ/z/ShkJxiyLnm4LcuAT76suSukFAiTUp9WeR7oWUSGSB0rUFKkizCoM4dRDlYpcw==}
+  '@redocly/cli@1.25.2':
+    resolution: {integrity: sha512-E4Y5MBoFG86KSVjScGMa9sc/awn1+7zKfFQNvP1XbELeJnYuYw6tbkBDugNlGinE0RRiZVOtnJutjVjsvs8P/Q==}
     engines: {node: '>=14.19.0', npm: '>=7.0.0'}
     hasBin: true
 
   '@redocly/config@0.10.1':
     resolution: {integrity: sha512-H3LnKVGzOaxskwJu8pmJYwBOWjP61qOK7TuTrbafqArDVckE06fhA6l0nO4KvBbjLPjy1Al7UnlxOu23V4Nl0w==}
 
-  '@redocly/openapi-core@1.25.0':
-    resolution: {integrity: sha512-g6/Y7HGQCllZI1iXAXDvmnpU7kaUeA7s9RVH13V2QIFi6VUJ+8HbyqTpUvAgkWRJV3da5CECEHyu+85fH+0hEg==}
+  '@redocly/openapi-core@1.25.2':
+    resolution: {integrity: sha512-6lJ3cRwi9xFkz/DDSmZNiv16hrzUeDoiZJQppSckKmw7MHkARu9gqRNARxUjtOAywqvpGMneASVIF9ogmalrQg==}
     engines: {node: '>=14.19.0', npm: '>=7.0.0'}
 
   '@sindresorhus/merge-streams@2.3.0':
@@ -2880,9 +2880,9 @@ snapshots:
       require-from-string: 2.0.2
       uri-js-replace: 1.0.1
 
-  '@redocly/cli@1.25.0(enzyme@3.11.0)':
+  '@redocly/cli@1.25.2(enzyme@3.11.0)':
     dependencies:
-      '@redocly/openapi-core': 1.25.0
+      '@redocly/openapi-core': 1.25.2
       abort-controller: 3.0.0
       chokidar: 3.6.0
       colorette: 1.4.0
@@ -2911,7 +2911,7 @@ snapshots:
 
   '@redocly/config@0.10.1': {}
 
-  '@redocly/openapi-core@1.25.0':
+  '@redocly/openapi-core@1.25.2':
     dependencies:
       '@redocly/ajv': 8.11.2
       '@redocly/config': 0.10.1
@@ -4806,7 +4806,7 @@ snapshots:
   redoc@2.1.5(core-js@3.38.1)(enzyme@3.11.0)(mobx@6.13.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@6.1.12(react-dom@18.3.1(react@18.3.1))(react@18.3.1)):
     dependencies:
       '@cfaester/enzyme-adapter-react-18': 0.8.0(enzyme@3.11.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@redocly/openapi-core': 1.25.0
+      '@redocly/openapi-core': 1.25.2
       classnames: 2.5.1
       core-js: 3.38.1
       decko: 1.2.0
