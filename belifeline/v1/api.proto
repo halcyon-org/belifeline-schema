@@ -2,9 +2,9 @@ syntax = "proto3";
 
 package belifeline.v1;
 
+import "belifeline/models/v1/extinfo.proto";
 import "belifeline/models/v1/koyo.proto";
 import "belifeline/models/v1/provider.proto";
-import "belifeline/models/v1/extinfo.proto";
 import "belifeline/models/v1/types.proto";
 
 option go_package = "github.com/halcyon-org/kizuna/gen/belifeline/v1;mainv1";
@@ -22,8 +22,8 @@ message KoyoCreateRequest {
   belifeline.models.v1.DataType data_type = 10;
 }
 
-message KoyoCreateResponse{
-  belifeline.models.v1.KoyoInformation koyo_infomation  = 1;
+message KoyoCreateResponse {
+  belifeline.models.v1.KoyoInformation koyo_infomation = 1;
 }
 
 message KoyoInformationCreateOrUpdate {
