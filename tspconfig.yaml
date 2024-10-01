@@ -1,4 +1,0 @@
-emit:
-  - "@typespec/openapi3"
-
-output-dir: "{cwd}/schema"
