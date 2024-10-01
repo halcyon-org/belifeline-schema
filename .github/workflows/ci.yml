@@ -1,0 +1,22 @@
+name: Main CI
+
+on: pull_request
+
+jobs:
+  all-status-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs:
+      - buf-check
+    steps:
+      - name: All status check
+        run: echo "All status check passed"
+
+  buf-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: bufbuild/buf-action@d4b43256b3a511e94e6c0d38d478e1bd39f8690e # V1.0.1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
