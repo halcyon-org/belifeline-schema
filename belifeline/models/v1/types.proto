@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package belifeline.models.v1;
+
+option go_package = "github.com/halcyon-org/kizuna/gen/belifeline/v1;mainv1";
+
+// Common Types
+message DateUntil {
+  string before = 1;
+  string after = 2;
+}
+
+message UUID {
+  string value = 1;
+}
+
+message Version {
+  string value = 1;
+}
+
+// Auth Types
+message ApiKey {
+  string key = 1;
+}
+
+// GeoJSON Like Types
+message Point {
+  repeated double coordinates = 1;
+}
+
+message MultiPoint {
+  repeated Point coordinates = 1;
+}
+
+message Polygon {
+  repeated Point coordinates = 1;
+}
+
+message MultiPolygon {
+  repeated Polygon coordinates = 2;
+}
+
+enum DataType {
+  DATA_TYPE_UNSPECIFIED = 0;
+  DATA_TYPE_IMAGE = 1;
+  DATA_TYPE_CSV = 2;
+  DATA_TYPE_JSON = 3;
+}

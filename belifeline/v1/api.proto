@@ -1,0 +1,144 @@
+syntax = "proto3";
+
+package belifeline.v1;
+
+import "belifeline/models/v1/extinfo.proto";
+import "belifeline/models/v1/koyo.proto";
+import "belifeline/models/v1/provider.proto";
+import "belifeline/models/v1/types.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/halcyon-org/kizuna/gen/belifeline/v1;mainv1";
+
+message KoyoCreateRequest {
+  string koyo_name = 1;
+  string koyo_description = 2;
+  repeated belifeline.models.v1.UUID need_external = 3;
+  map<string, string> koyo_params = 4;
+  repeated float koyo_scales = 5;
+  belifeline.models.v1.Version version = 6;
+  repeated belifeline.models.v1.Version version_history = 7;
+  string license = 8;
+  repeated string ext_licenses = 9;
+  belifeline.models.v1.DataType data_type = 10;
+}
+
+message KoyoCreateResponse {
+  belifeline.models.v1.KoyoInformation koyo_infomation = 1;
+}
+
+message KoyoInformationCreateOrUpdate {
+  belifeline.models.v1.UUID koyo_id = 1;
+  string koyo_name = 2;
+  string koyo_description = 3;
+  repeated belifeline.models.v1.UUID need_external = 4;
+  map<string, string> koyo_params = 5;
+  repeated float koyo_scales = 6;
+  repeated belifeline.models.v1.UUID koyo_data_ids = 7;
+  belifeline.models.v1.Version version = 8;
+  repeated belifeline.models.v1.Version version_history = 9;
+  string license = 10;
+  repeated string ext_licenses = 11;
+  belifeline.models.v1.DataType data_type = 12;
+}
+
+message ExtInfoCreateRequest {
+  string external_name = 1;
+  string external_description = 2;
+  string license = 3;
+  string license_description = 4;
+  google.protobuf.Timestamp first_entry_at = 5;
+  google.protobuf.Timestamp last_updated_at = 6;
+  repeated string updated_history = 7;
+}
+
+message ExtInfoCreateResponse {
+  belifeline.models.v1.ExternalInformation external_information = 1;
+}
+
+message ClientCreateRequest {
+  string username = 1;
+}
+
+message ClientCreateResponse {
+  belifeline.models.v1.ClientData client_data = 1;
+}
+
+enum RequestType {
+  REQUEST_TYPE_UNSPECIFIED = 0;
+  REQUEST_TYPE_TMS = 1;
+  REQUEST_TYPE_GEOJSON = 2;
+}
+
+message ClientListRequest {
+  int32 limit = 1;
+}
+
+message ClientListResponse {
+  belifeline.models.v1.ClientData client_data = 1;
+}
+
+message ExtInfoListRequest {
+  int32 limit = 1;
+}
+
+message ExtInfoListResponse {
+  belifeline.models.v1.ExternalInformation external_information = 1;
+}
+
+message KoyoListRequest {
+  int32 limit = 1;
+}
+
+message ClientDeleteRequest {
+  belifeline.models.v1.UUID client_id = 1;
+}
+
+message ClientDeleteResponse {
+  belifeline.models.v1.UUID client_id = 1;
+}
+
+message ClientRevokeRequest {
+  belifeline.models.v1.UUID client_id = 1;
+}
+
+message ExtInfoDeleteRequest {
+  belifeline.models.v1.UUID extinfo_id = 1;
+}
+
+message ExtInfoDeleteResponse {
+  belifeline.models.v1.UUID extinfo_id = 1;
+}
+
+message KoyoDeleteRequest {
+  belifeline.models.v1.UUID koyo_id = 1;
+}
+
+message KoyoDeleteResponse {
+  belifeline.models.v1.UUID koyo_id = 1;
+}
+
+message KoyoApiRevokeRequest {
+  belifeline.models.v1.UUID koyo_id = 1;
+  belifeline.models.v1.ApiKey api_key = 2;
+}
+
+message KoyoApiRevokeResponse {
+  belifeline.models.v1.UUID koyo_id = 1;
+  belifeline.models.v1.ApiKey api_key = 2;
+}
+
+message ClientRevokeResponse {
+  belifeline.models.v1.UUID client_id = 1;
+  belifeline.models.v1.ApiKey api_key = 2;
+}
+
+message KoyoListResponse {
+  belifeline.models.v1.KoyoInformation koyo_infomation = 1;
+}
+
+message StatusRequest {}
+
+message StatusResponse {
+  string status = 1;
+}

@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package belifeline.models.v1;
+
+import "belifeline/models/v1/types.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/halcyon-org/kizuna/gen/belifeline/v1;mainv1";
+
+message KoyoData {
+  string koyo_data_id = 1;
+  UUID koyo_id = 2;
+  float koyo_scale = 3;
+  bytes content = 4;
+  google.protobuf.Timestamp entry_at = 5;
+  google.protobuf.Timestamp target_at = 6;
+}
+
+message KoyoDataCreate {
+  UUID koyo_id = 1;
+  float koyo_scale = 2;
+  bytes content = 3;
+}
+
+message KoyoInformation {
+  UUID koyo_id = 1;
+  string koyo_name = 2;
+  string koyo_description = 3;
+  repeated UUID need_external = 4;
+  map<string, string> koyo_params = 5;
+  repeated float koyo_scales = 6;
+  repeated UUID koyo_data_ids = 7;
+  Version version = 8;
+  repeated Version version_history = 9;
+  string license = 10;
+  repeated string ext_licenses = 11;
+  DataType data_type = 12;
+  google.protobuf.Timestamp first_entry_at = 13;
+  google.protobuf.Timestamp last_entry_at = 14;
+  google.protobuf.Timestamp last_updated_at = 15;
+}
