@@ -3,6 +3,7 @@ syntax = "proto3";
 package belifeline.models.v1;
 
 import "belifeline/models/v1/types.proto";
+import "google/protobuf/timestamp.proto";
 
 option go_package = "github.com/halcyon-org/kizuna/gen/belifeline/v1;mainv1";
 
@@ -10,7 +11,7 @@ message ClientData {
   UUID client_id = 1;
   string username = 2;
   ApiKey api_key = 3;
-  string created_at = 4;
-  string last_used_at = 5;
-  string last_updated_at = 6;
+  google.protobuf.Timestamp created_at = 4;
+  google.protobuf.Timestamp last_used_at = 5;
+  google.protobuf.Timestamp last_updated_at = 6;
 }
