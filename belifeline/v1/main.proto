@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package belifeline.v1;
+
+import "belifeline/models/v1/extinfo.proto";
+import "belifeline/models/v1/koyo.proto";
+import "belifeline/models/v1/provider.proto";
+import "belifeline/models/v1/types.proto";
+import "belifeline/v1/api.proto";
+
+option go_package = "github.com/halcyon-org/kizuna/gen/belifeline/v1;mainv1";
+
+// Service Definitions
+service BeLifelineService {
+  rpc ClientCreate(ClientCreateRequest) returns (belifeline.models.v1.ClientData) {}
+  rpc ClientList(ListRequest) returns (stream belifeline.models.v1.ClientData) {}
+  rpc ClientDelete(ClientIdentifier) returns (ClientIdentifier) {}
+  rpc ClientRevoke(ClientIdentifier) returns (RevokeResponse) {}
+
+  rpc ExtInfoCreate(ExternalInformationCreate) returns (belifeline.models.v1.ExternalInformation) {}
+  rpc ExtInfoList(ListRequest) returns (stream belifeline.models.v1.ExternalInformation) {}
+  rpc ExtInfoDelete(ExtInfoIdentifier) returns (ExtInfoIdentifier) {}
+
+  rpc KoyoCreate(KoyoInformationCreate) returns (belifeline.models.v1.KoyoInformation) {}
+  rpc KoyoList(ListRequest) returns (stream belifeline.models.v1.KoyoInformation) {}
+  rpc KoyoDelete(KoyoIdentifier) returns (KoyoIdentifier) {}
+  rpc KoyoRevoke(ApiKeyRevokeRequest) returns (RevokeResponse) {}
+
+  rpc Status(Empty) returns (StatusResponse) {}
+
+  // Define additional endpoints as appropriate
+}
