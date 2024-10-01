@@ -10,7 +10,8 @@ jobs:
       - buf-check
     steps:
       - name: All status check
-        run: echo "All status check passed"
+        run: echo "All status checks passed"
+        
 
   buf-check:
     runs-on: ubuntu-latest
