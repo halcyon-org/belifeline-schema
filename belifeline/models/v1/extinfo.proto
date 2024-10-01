@@ -14,7 +14,7 @@ message ExampleInfoExampleData {
 }
 
 message ExternalInformation {
-  UUID external_id = 1;
+  ULID external_id = 1;
   string external_name = 2;
   string external_description = 3;
   string license = 4;

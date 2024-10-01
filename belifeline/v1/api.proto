@@ -13,7 +13,7 @@ option go_package = "github.com/halcyon-org/kizuna/gen/belifeline/v1;mainv1";
 message KoyoCreateRequest {
   string koyo_name = 1;
   string koyo_description = 2;
-  repeated belifeline.models.v1.UUID need_external = 3;
+  repeated belifeline.models.v1.ULID need_external = 3;
   map<string, string> koyo_params = 4;
   repeated float koyo_scales = 5;
   belifeline.models.v1.Version version = 6;
@@ -28,13 +28,13 @@ message KoyoCreateResponse {
 }
 
 message KoyoInformationCreateOrUpdate {
-  belifeline.models.v1.UUID koyo_id = 1;
+  belifeline.models.v1.ULID koyo_id = 1;
   string koyo_name = 2;
   string koyo_description = 3;
-  repeated belifeline.models.v1.UUID need_external = 4;
+  repeated belifeline.models.v1.ULID need_external = 4;
   map<string, string> koyo_params = 5;
   repeated float koyo_scales = 6;
-  repeated belifeline.models.v1.UUID koyo_data_ids = 7;
+  repeated belifeline.models.v1.ULID koyo_data_ids = 7;
   belifeline.models.v1.Version version = 8;
   repeated belifeline.models.v1.Version version_history = 9;
   string license = 10;
@@ -91,45 +91,45 @@ message KoyoListRequest {
 }
 
 message ClientDeleteRequest {
-  belifeline.models.v1.UUID client_id = 1;
+  belifeline.models.v1.ULID client_id = 1;
 }
 
 message ClientDeleteResponse {
-  belifeline.models.v1.UUID client_id = 1;
+  belifeline.models.v1.ULID client_id = 1;
 }
 
 message ClientRevokeRequest {
-  belifeline.models.v1.UUID client_id = 1;
+  belifeline.models.v1.ULID client_id = 1;
 }
 
 message ExtInfoDeleteRequest {
-  belifeline.models.v1.UUID extinfo_id = 1;
+  belifeline.models.v1.ULID extinfo_id = 1;
 }
 
 message ExtInfoDeleteResponse {
-  belifeline.models.v1.UUID extinfo_id = 1;
+  belifeline.models.v1.ULID extinfo_id = 1;
 }
 
 message KoyoDeleteRequest {
-  belifeline.models.v1.UUID koyo_id = 1;
+  belifeline.models.v1.ULID koyo_id = 1;
 }
 
 message KoyoDeleteResponse {
-  belifeline.models.v1.UUID koyo_id = 1;
+  belifeline.models.v1.ULID koyo_id = 1;
 }
 
 message KoyoApiRevokeRequest {
-  belifeline.models.v1.UUID koyo_id = 1;
+  belifeline.models.v1.ULID koyo_id = 1;
   belifeline.models.v1.ApiKey api_key = 2;
 }
 
 message KoyoApiRevokeResponse {
-  belifeline.models.v1.UUID koyo_id = 1;
+  belifeline.models.v1.ULID koyo_id = 1;
   belifeline.models.v1.ApiKey api_key = 2;
 }
 
 message ClientRevokeResponse {
-  belifeline.models.v1.UUID client_id = 1;
+  belifeline.models.v1.ULID client_id = 1;
   belifeline.models.v1.ApiKey api_key = 2;
 }
 

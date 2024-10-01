@@ -10,7 +10,7 @@ message DateUntil {
   string after = 2;
 }
 
-message UUID {
+message ULID {
   string value = 1;
 }
 
