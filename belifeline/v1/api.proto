@@ -137,8 +137,8 @@ message KoyoListResponse {
   belifeline.models.v1.KoyoInformation koyo_infomation = 1;
 }
 
-message StatusRequest {}
+message HealthRequest {}
 
-message StatusResponse {
+message HealthResponse {
   string status = 1;
 }
