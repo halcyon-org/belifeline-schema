@@ -5,7 +5,7 @@ package belifeline.models.v1;
 import "belifeline/models/v1/types.proto";
 import "google/protobuf/timestamp.proto";
 
-option go_package = "github.com/halcyon-org/kizuna/gen/belifeline/v1;mainv1";
+option go_package = "github.com/halcyon-org/kizuna/gen/belifeline/models/v1;modelsv1";
 
 message ClientData {
   ULID client_id = 1;

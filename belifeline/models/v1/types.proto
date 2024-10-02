@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package belifeline.models.v1;
 
-option go_package = "github.com/halcyon-org/kizuna/gen/belifeline/v1;mainv1";
+option go_package = "github.com/halcyon-org/kizuna/gen/belifeline/models/v1;modelsv1";
 
 // Common Types
 message DateUntil {
