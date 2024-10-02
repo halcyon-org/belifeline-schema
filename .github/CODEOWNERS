@@ -1,2 +1,4 @@
-@shiron-dev
-schema/**/* @shiron-dev
+* @shiron-dev
+
+# for renovate
+.github
