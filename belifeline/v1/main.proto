@@ -22,7 +22,7 @@ service BeLifelineService {
   rpc KoyoDelete(KoyoDeleteRequest) returns (KoyoDeleteResponse) {}
   rpc KoyoApiRevoke(KoyoApiRevokeRequest) returns (KoyoApiRevokeResponse) {}
 
-  rpc Status(StatusRequest) returns (StatusResponse) {}
+  rpc Health(HealthRequest) returns (HealthResponse) {}
 
   // Define additional endpoints as appropriate
 }
