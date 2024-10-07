@@ -24,7 +24,7 @@ message KoyoCreateRequest {
 }
 
 message KoyoCreateResponse {
-  belifeline.models.v1.KoyoInformation koyo_infomation = 1;
+  belifeline.models.v1.KoyoInformation koyo_information = 1;
 }
 
 message KoyoInformationCreateOrUpdate {
@@ -134,7 +134,7 @@ message ClientRevokeResponse {
 }
 
 message KoyoListResponse {
-  belifeline.models.v1.KoyoInformation koyo_infomation = 1;
+  belifeline.models.v1.KoyoInformation koyo_information = 1;
 }
 
 message HealthRequest {}
