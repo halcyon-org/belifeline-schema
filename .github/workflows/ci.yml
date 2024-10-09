@@ -18,6 +18,6 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-      - uses: bufbuild/buf-action@d4b43256b3a511e94e6c0d38d478e1bd39f8690e # V1.0.1
+      - uses: bufbuild/buf-action@275c46df241e678db8e3ff3969ecb24b0b9001c5 # V1.0.1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
