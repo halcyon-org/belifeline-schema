@@ -10,57 +10,45 @@ import "google/protobuf/timestamp.proto";
 
 option go_package = "github.com/halcyon-org/kizuna/gen/belifeline/v1;mainv1";
 
-message KoyoCreateRequest {
-  string koyo_name = 1;
-  string koyo_description = 2;
-  repeated belifeline.models.v1.ULID need_external = 3;
-  map<string, string> koyo_params = 4;
-  repeated float koyo_scales = 5;
-  belifeline.models.v1.Version version = 6;
-  repeated belifeline.models.v1.Version version_history = 7;
-  string license = 8;
-  repeated string ext_licenses = 9;
-  belifeline.models.v1.DataType data_type = 10;
-}
-
-message KoyoCreateResponse {
-  belifeline.models.v1.KoyoInformation koyo_information = 1;
-}
-
-message KoyoInformationCreateOrUpdate {
-  belifeline.models.v1.ULID koyo_id = 1;
+message KoyoSetRequest {
+  optional belifeline.models.v1.ULID koyo_id = 1;
   string koyo_name = 2;
   string koyo_description = 3;
   repeated belifeline.models.v1.ULID need_external = 4;
   map<string, string> koyo_params = 5;
   repeated float koyo_scales = 6;
-  repeated belifeline.models.v1.ULID koyo_data_ids = 7;
-  belifeline.models.v1.Version version = 8;
-  repeated belifeline.models.v1.Version version_history = 9;
-  string license = 10;
-  repeated string ext_licenses = 11;
-  belifeline.models.v1.DataType data_type = 12;
+  belifeline.models.v1.Version version = 7;
+  repeated belifeline.models.v1.Version version_history = 8;
+  string license = 9;
+  repeated string ext_licenses = 10;
+  belifeline.models.v1.DataType data_type = 11;
 }
 
-message ExtInfoCreateRequest {
-  string external_name = 1;
-  string external_description = 2;
-  string license = 3;
-  string license_description = 4;
-  google.protobuf.Timestamp first_entry_at = 5;
-  google.protobuf.Timestamp last_updated_at = 6;
-  repeated string updated_history = 7;
+message KoyoSetResponse {
+  belifeline.models.v1.KoyoInformation koyo_information = 1;
 }
 
-message ExtInfoCreateResponse {
+message ExtInfoSetRequest {
+  optional belifeline.models.v1.ULID extinfo_id = 1;
+  string external_name = 2;
+  string external_description = 3;
+  string license = 4;
+  string license_description = 5;
+  google.protobuf.Timestamp first_entry_at = 6;
+  google.protobuf.Timestamp last_updated_at = 7;
+  repeated string updated_history = 8;
+}
+
+message ExtInfoSetResponse {
   belifeline.models.v1.ExternalInformation external_information = 1;
 }
 
-message ClientCreateRequest {
-  string username = 1;
+message ClientSetRequest {
+  optional belifeline.models.v1.ULID client_id = 1;
+  string username = 2;
 }
 
-message ClientCreateResponse {
+message ClientSetResponse {
   belifeline.models.v1.ClientData client_data = 1;
 }
 
@@ -157,4 +145,31 @@ message HealthRequest {}
 
 message HealthResponse {
   string status = 1;
+}
+
+message KoyoDataGetRequest {
+  belifeline.models.v1.ULID koyo_id = 1;
+  optional belifeline.models.v1.ULID koyo_data_id = 2;
+  optional belifeline.models.v1.MultiPolygon area = 3;
+  optional belifeline.models.v1.DateUntil until = 4;
+  optional belifeline.models.v1.DateUntil until_entry = 5;
+  map<string, string> params = 6;
+  optional float scale = 7;
+}
+
+message KoyoDataGetResponse {
+  belifeline.models.v1.KoyoData koyo_data = 1;
+}
+
+message ExtInfoGetRequest {
+  belifeline.models.v1.ULID extinfo_id = 1;
+  optional belifeline.models.v1.MultiPolygon area = 3;
+  optional belifeline.models.v1.DateUntil until = 4;
+  optional belifeline.models.v1.DateUntil until_entry = 5;
+  map<string, string> params = 6;
+  optional float scale = 7;
+}
+
+message ExtInfoGetResponse {
+  bytes data = 1;
 }
