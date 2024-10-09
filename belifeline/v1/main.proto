@@ -12,6 +12,7 @@ service ServerService {
 
 service AdminService {
   rpc ClientSet(ClientSetRequest) returns (ClientSetResponse) {}
+  rpc ClientList(ClientListRequest) returns (ClientListResponse) {}
   rpc ClientDelete(ClientDeleteRequest) returns (ClientDeleteResponse) {}
   rpc ClientRevoke(ClientRevokeRequest) returns (ClientRevokeResponse) {}
 
@@ -24,7 +25,6 @@ service AdminService {
 }
 
 service ProviderService {
-  rpc ClientList(ClientListRequest) returns (stream ClientListResponse) {}
   rpc ExtInfoList(ExtInfoListRequest) returns (stream ExtInfoListResponse) {}
   rpc KoyoList(KoyoListRequest) returns (stream KoyoListResponse) {}
   rpc ExtInfoGet(ExtInfoGetRequest) returns (ExtInfoGetResponse) {}
