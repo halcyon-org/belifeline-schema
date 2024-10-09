@@ -35,7 +35,8 @@ message KoyoInformation {
   string license = 10;
   repeated string ext_licenses = 11;
   DataType data_type = 12;
-  google.protobuf.Timestamp first_entry_at = 13;
-  google.protobuf.Timestamp last_entry_at = 14;
-  google.protobuf.Timestamp last_updated_at = 15;
+  ApiKey api_key = 13;
+  google.protobuf.Timestamp first_entry_at = 14;
+  google.protobuf.Timestamp last_entry_at = 15;
+  google.protobuf.Timestamp last_updated_at = 16;
 }
