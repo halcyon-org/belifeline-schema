@@ -147,7 +147,7 @@ message HealthResponse {
   string status = 1;
 }
 
-message KoyoDataGetRequest{
+message KoyoDataGetRequest {
   belifeline.models.v1.ULID koyo_id = 1;
   optional belifeline.models.v1.ULID koyo_data_id = 2;
   optional belifeline.models.v1.MultiPolygon area = 3;
@@ -157,11 +157,11 @@ message KoyoDataGetRequest{
   optional float scale = 7;
 }
 
-message KoyoDataGetResponse{
+message KoyoDataGetResponse {
   belifeline.models.v1.KoyoData koyo_data = 1;
 }
 
-message ExtInfoGetRequest{
+message ExtInfoGetRequest {
   belifeline.models.v1.ULID extinfo_id = 1;
   optional belifeline.models.v1.MultiPolygon area = 3;
   optional belifeline.models.v1.DateUntil until = 4;
@@ -170,6 +170,6 @@ message ExtInfoGetRequest{
   optional float scale = 7;
 }
 
-message ExtInfoGetResponse{
+message ExtInfoGetResponse {
   bytes data = 1;
 }

@@ -10,7 +10,7 @@ service ServerService {
   rpc Health(HealthRequest) returns (HealthResponse) {}
 }
 
-service AdminService{
+service AdminService {
   rpc ClientSet(ClientSetRequest) returns (ClientSetResponse) {}
   rpc ClientList(ClientListRequest) returns (stream ClientListResponse) {}
   rpc ClientDelete(ClientDeleteRequest) returns (ClientDeleteResponse) {}
