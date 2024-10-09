@@ -110,6 +110,14 @@ message ExtInfoDeleteResponse {
   belifeline.models.v1.ULID extinfo_id = 1;
 }
 
+message ExtInfoUpdateNotificationRequest {
+  belifeline.models.v1.ULID extinfo_id = 1;
+}
+
+message ExtInfoUpdateNotificationResponse {
+  belifeline.models.v1.ULID extinfo_id = 1;
+}
+
 message KoyoDeleteRequest {
   belifeline.models.v1.ULID koyo_id = 1;
 }
@@ -135,6 +143,14 @@ message ClientRevokeResponse {
 
 message KoyoListResponse {
   belifeline.models.v1.KoyoInformation koyo_information = 1;
+}
+
+message KoyoDataAddRequest {
+  belifeline.models.v1.KoyoData koyo_data = 1;
+}
+
+message KoyoDataAddResponse {
+  belifeline.models.v1.ULID koyo_data = 1;
 }
 
 message HealthRequest {}

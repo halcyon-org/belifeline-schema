@@ -16,11 +16,13 @@ service BeLifelineService {
   rpc ExtInfoCreate(ExtInfoCreateRequest) returns (ExtInfoCreateResponse) {}
   rpc ExtInfoList(ExtInfoListRequest) returns (stream ExtInfoListResponse) {}
   rpc ExtInfoDelete(ExtInfoDeleteRequest) returns (ExtInfoDeleteResponse) {}
+  rpc ExtInfoUpdateNotification(ExtInfoUpdateNotificationRequest) returns (ExtInfoUpdateNotificationResponse) {}
 
   rpc KoyoCreate(KoyoCreateRequest) returns (KoyoCreateResponse) {}
   rpc KoyoList(KoyoListRequest) returns (stream KoyoListResponse) {}
   rpc KoyoDelete(KoyoDeleteRequest) returns (KoyoDeleteResponse) {}
   rpc KoyoApiRevoke(KoyoApiRevokeRequest) returns (KoyoApiRevokeResponse) {}
+  rpc KoyoDataAdd(KoyoDataAddRequest) returns (KoyoDataAddResponse) {}
 
   rpc Health(HealthRequest) returns (HealthResponse) {}
 
