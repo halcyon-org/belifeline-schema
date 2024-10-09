@@ -63,7 +63,7 @@ message ClientListRequest {
 }
 
 message ClientListResponse {
-  belifeline.models.v1.ClientData client_data = 1;
+  repeated belifeline.models.v1.ClientData client_data_list = 1;
 }
 
 message ExtInfoListRequest {
@@ -71,7 +71,7 @@ message ExtInfoListRequest {
 }
 
 message ExtInfoListResponse {
-  belifeline.models.v1.ExternalInformation external_information = 1;
+  repeated belifeline.models.v1.ExternalInformation external_information_list = 1;
 }
 
 message KoyoListRequest {
@@ -130,7 +130,7 @@ message ClientRevokeResponse {
 }
 
 message KoyoListResponse {
-  belifeline.models.v1.KoyoInformation koyo_information = 1;
+  repeated belifeline.models.v1.KoyoInformation koyo_information_list = 1;
 }
 
 message KoyoDataAddRequest {
