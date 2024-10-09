@@ -6,25 +6,28 @@ import "belifeline/v1/api.proto";
 
 option go_package = "github.com/halcyon-org/kizuna/gen/belifeline/v1;mainv1";
 
-// Service Definitions
-service BeLifelineService {
+service ServerService {
+  rpc Health(HealthRequest) returns (HealthResponse) {}
+}
+
+service ProviderService {
   rpc ClientCreate(ClientCreateRequest) returns (ClientCreateResponse) {}
   rpc ClientList(ClientListRequest) returns (stream ClientListResponse) {}
   rpc ClientDelete(ClientDeleteRequest) returns (ClientDeleteResponse) {}
   rpc ClientRevoke(ClientRevokeRequest) returns (ClientRevokeResponse) {}
+}
 
+service ExtInfoService {
   rpc ExtInfoCreate(ExtInfoCreateRequest) returns (ExtInfoCreateResponse) {}
   rpc ExtInfoList(ExtInfoListRequest) returns (stream ExtInfoListResponse) {}
   rpc ExtInfoDelete(ExtInfoDeleteRequest) returns (ExtInfoDeleteResponse) {}
   rpc ExtInfoUpdateNotification(ExtInfoUpdateNotificationRequest) returns (ExtInfoUpdateNotificationResponse) {}
+}
 
+service KoyoService {
   rpc KoyoCreate(KoyoCreateRequest) returns (KoyoCreateResponse) {}
   rpc KoyoList(KoyoListRequest) returns (stream KoyoListResponse) {}
   rpc KoyoDelete(KoyoDeleteRequest) returns (KoyoDeleteResponse) {}
   rpc KoyoApiRevoke(KoyoApiRevokeRequest) returns (KoyoApiRevokeResponse) {}
   rpc KoyoDataAdd(KoyoDataAddRequest) returns (KoyoDataAddResponse) {}
-
-  rpc Health(HealthRequest) returns (HealthResponse) {}
-
-  // Define additional endpoints as appropriate
 }
