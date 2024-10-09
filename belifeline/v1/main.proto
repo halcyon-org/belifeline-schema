@@ -12,13 +12,11 @@ service ServerService {
 
 service AdminService {
   rpc ClientSet(ClientSetRequest) returns (ClientSetResponse) {}
-  rpc ClientList(ClientListRequest) returns (stream ClientListResponse) {}
   rpc ClientDelete(ClientDeleteRequest) returns (ClientDeleteResponse) {}
   rpc ClientRevoke(ClientRevokeRequest) returns (ClientRevokeResponse) {}
 
   rpc ExtInfoSet(ExtInfoSetRequest) returns (ExtInfoSetResponse) {}
   rpc ExtInfoDelete(ExtInfoDeleteRequest) returns (ExtInfoDeleteResponse) {}
-  rpc ExtInfoList(ExtInfoListRequest) returns (stream ExtInfoListResponse) {}
 
   rpc KoyoSet(KoyoSetRequest) returns (KoyoSetResponse) {}
   rpc KoyoDelete(KoyoDeleteRequest) returns (KoyoDeleteResponse) {}
@@ -29,6 +27,7 @@ service ProviderService {
   rpc ClientList(ClientListRequest) returns (stream ClientListResponse) {}
   rpc ExtInfoList(ExtInfoListRequest) returns (stream ExtInfoListResponse) {}
   rpc KoyoList(KoyoListRequest) returns (stream KoyoListResponse) {}
+  rpc ExtInfoGet(ExtInfoGetRequest) returns (ExtInfoGetResponse) {}
   rpc KoyoDataGet(KoyoDataGetRequest) returns (KoyoDataGetResponse) {}
 }
 
@@ -37,7 +36,5 @@ service ExtInfoService {
 }
 
 service KoyoService {
-  rpc ExtInfoList(ExtInfoListRequest) returns (stream ExtInfoListResponse) {}
-  rpc ExtInfoGet(ExtInfoGetRequest) returns (ExtInfoGetResponse) {}
   rpc KoyoDataAdd(KoyoDataAddRequest) returns (KoyoDataAddResponse) {}
 }
