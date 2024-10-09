@@ -12,7 +12,7 @@ service ServerService {
 
 service AdminService {
   rpc ClientSet(ClientSetRequest) returns (ClientSetResponse) {}
-  rpc ClientList(ClientListRequest) returns (stream ClientListResponse) {}
+  rpc ClientList(ClientListRequest) returns (ClientListResponse) {}
   rpc ClientDelete(ClientDeleteRequest) returns (ClientDeleteResponse) {}
   rpc ClientRevoke(ClientRevokeRequest) returns (ClientRevokeResponse) {}
 
