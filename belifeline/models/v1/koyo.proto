@@ -31,7 +31,6 @@ message KoyoInformation {
   repeated float koyo_scales = 6;
   repeated ULID koyo_data_ids = 7;
   Version version = 8;
-  repeated Version version_history = 9;
   string license = 10;
   repeated string ext_licenses = 11;
   DataType data_type = 12;
