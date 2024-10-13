@@ -29,7 +29,7 @@ message ClientSetRequest {
 }
 
 message ClientSetResponse {
-  belifeline.models.v1.ClientInformation client_data = 1;
+  belifeline.models.v1.ClientInformation client_information = 1;
 }
 
 message ClientListRequest {
@@ -37,7 +37,7 @@ message ClientListRequest {
 }
 
 message ClientListResponse {
-  repeated belifeline.models.v1.ClientInformation client_data_list = 1;
+  repeated belifeline.models.v1.ClientInformation client_information_list = 1;
 }
 
 message ClientDeleteRequest {
