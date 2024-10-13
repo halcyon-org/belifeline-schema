@@ -2,47 +2,67 @@ syntax = "proto3";
 
 package belifeline.models.v1;
 
+import "google/protobuf/timestamp.proto";
+
 option go_package = "github.com/halcyon-org/kizuna/gen/belifeline/models/v1;modelsv1";
 
-// Common Types
+/**
+ * Common types
+ */
+
+// Represents a date interval from before to after
 message DateUntil {
-  string before = 1;
-  string after = 2;
+  google.protobuf.Timestamp before = 1;
+  google.protobuf.Timestamp after = 2;
 }
 
+// ULID https://github.com/ulid/spec
 message ULID {
   string value = 1;
 }
 
+// Semantic versioning https://semver.org/
 message Version {
   string value = 1;
 }
 
-// Auth Types
-message ApiKey {
-  string key = 1;
-}
-
-// GeoJSON Like Types
-message Point {
-  repeated double coordinates = 1;
-}
-
-message MultiPoint {
-  repeated Point coordinates = 1;
-}
-
-message Polygon {
-  repeated Point coordinates = 1;
-}
-
-message MultiPolygon {
-  repeated Polygon coordinates = 2;
-}
-
+// Format of data returned by Koyo (in KoyoData)
 enum DataType {
   DATA_TYPE_UNSPECIFIED = 0;
   DATA_TYPE_IMAGE = 1;
   DATA_TYPE_CSV = 2;
   DATA_TYPE_JSON = 3;
+}
+
+/**
+ * Auth types
+ */
+
+// API Key
+message ApiKey {
+  string key = 1;
+}
+
+/**
+ * GeoJSON Like Types
+ */
+
+// GeoJSON Point https://www.ibm.com/docs/ja/db2/11.5?topic=formats-geojson-format#:~:text=%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88-,Point,-ST_Point%20%E9%96%A2%E6%95%B0%E3%80%81
+message Point {
+  repeated double coordinates = 1;
+}
+
+// GeoJSON MultiPoint https://www.ibm.com/docs/ja/db2/11.5?topic=formats-geojson-format#:~:text=%E3%81%AF%E3%81%82%E3%82%8A%E3%81%BE%E3%81%9B%E3%82%93%E3%80%82-,MultiPoint,-ST_MultiPoint%20%E9%96%A2%E6%95%B0%E3%80%81
+message MultiPoint {
+  repeated Point coordinates = 1;
+}
+
+// GeoJSON Polygon https://www.ibm.com/docs/ja/db2/11.5?topic=formats-geojson-format#:~:text=11.2%5D%2C%20%5B10.5%2C%2011.9%5D%5D%20%7D-,Polygon,-ST_Polygon%20%E9%96%A2%E6%95%B0%E3%80%81
+message Polygon {
+  repeated Point coordinates = 1;
+}
+
+// GeoJSON MultiPolygon https://www.ibm.com/docs/ja/db2/11.5?topic=formats-geojson-format#:~:text=12.9%5D%2C%20%5B12.0%2C%2013.0%5D%5D%20%7D-,MultiPolygon,-ST_MultiPolygon%20%E9%96%A2%E6%95%B0%E3%80%81
+message MultiPolygon {
+  repeated Polygon coordinates = 2;
 }
