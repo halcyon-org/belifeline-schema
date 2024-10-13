@@ -8,9 +8,9 @@ import "google/protobuf/timestamp.proto";
 option go_package = "github.com/halcyon-org/kizuna/gen/belifeline/models/v1;modelsv1";
 
 /**
-  * Client Information
-  * ClientInformation is basic information about Client
-  */
+ * Client Information
+ * ClientInformation is basic information about Client
+ */
 message ClientInformation {
   optional ULID client_id = 1;
   string username = 2;

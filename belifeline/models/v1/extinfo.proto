@@ -8,8 +8,8 @@ import "google/protobuf/timestamp.proto";
 option go_package = "github.com/halcyon-org/kizuna/gen/belifeline/models/v1;modelsv1";
 
 /**
-  * WARNING: THIS IS A SAMPLE
-  */
+ * WARNING: THIS IS A SAMPLE
+ */
 message ExampleInfoExampleData {
   ULID example_data_id = 1;
   MultiPolygon area = 2;
@@ -17,9 +17,9 @@ message ExampleInfoExampleData {
 }
 
 /**
-  * External Information
-  * ExternalInformation is basic information about External Information
-  */
+ * External Information
+ * ExternalInformation is basic information about External Information
+ */
 message ExternalInformation {
   optional ULID external_id = 1;
   string external_name = 2;

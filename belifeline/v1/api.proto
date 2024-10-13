@@ -10,8 +10,8 @@ import "belifeline/models/v1/types.proto";
 option go_package = "github.com/halcyon-org/kizuna/gen/belifeline/v1;mainv1";
 
 /**
-  * ServerService
-  */
+ * ServerService
+ */
 
 message HealthRequest {}
 
@@ -20,8 +20,8 @@ message HealthResponse {
 }
 
 /**
-  * AdminService
-  */
+ * AdminService
+ */
 
 message ClientSetRequest {
   optional belifeline.models.v1.ULID client_id = 1;
@@ -100,8 +100,8 @@ message KoyoApiRevokeResponse {
 }
 
 /**
-  * ProviderService
-  */
+ * ProviderService
+ */
 
 message ExtInfoListRequest {
   int32 limit = 1;
@@ -136,8 +136,8 @@ message KoyoDataGetResponse {
 }
 
 /**
-  * ExtInfoService
-  */
+ * ExtInfoService
+ */
 
 message ExtInfoUpdateNotificationRequest {
   belifeline.models.v1.ULID extinfo_id = 1;
@@ -148,8 +148,8 @@ message ExtInfoUpdateNotificationResponse {
 }
 
 /**
-  * KoyoService
-  */
+ * KoyoService
+ */
 
 message KoyoUpdateRequest {
   belifeline.models.v1.ULID koyo_id = 1;

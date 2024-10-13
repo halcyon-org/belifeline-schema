@@ -8,9 +8,9 @@ import "google/protobuf/timestamp.proto";
 option go_package = "github.com/halcyon-org/kizuna/gen/belifeline/models/v1;modelsv1";
 
 /**
-  * Koyos Information
-  * KoyoInformation is basic information about Koyo
-  */
+ * Koyos Information
+ * KoyoInformation is basic information about Koyo
+ */
 message KoyoInformation {
   optional ULID koyo_id = 1;
   string koyo_name = 2;
@@ -30,9 +30,9 @@ message KoyoInformation {
 }
 
 /**
-  * Koyo Data
-  * KoyoData is the data returned by Koyo. That is, data generated (calculated) by Koyo's algorithm.
-  */
+ * Koyo Data
+ * KoyoData is the data returned by Koyo. That is, data generated (calculated) by Koyo's algorithm.
+ */
 message KoyoData {
   optional ULID koyo_data_id = 1;
   ULID koyo_id = 2;
