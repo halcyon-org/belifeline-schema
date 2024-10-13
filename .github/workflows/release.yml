@@ -1,0 +1,37 @@
+name: github pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - uses: bufbuild/buf-action@275c46df241e678db8e3ff3969ecb24b0b9001c5 # V1.0.1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          setup_only: true
+      - name: buf generate
+        run: |
+          buf generate
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./out
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
