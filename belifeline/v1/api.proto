@@ -6,7 +6,6 @@ import "belifeline/models/v1/extinfo.proto";
 import "belifeline/models/v1/koyo.proto";
 import "belifeline/models/v1/provider.proto";
 import "belifeline/models/v1/types.proto";
-import "google/protobuf/timestamp.proto";
 
 option go_package = "github.com/halcyon-org/kizuna/gen/belifeline/v1;mainv1";
 
@@ -59,14 +58,7 @@ message ClientRevokeResponse {
 }
 
 message ExtInfoSetRequest {
-  optional belifeline.models.v1.ULID extinfo_id = 1;
-  string external_name = 2;
-  string external_description = 3;
-  string license = 4;
-  string license_description = 5;
-  google.protobuf.Timestamp first_entry_at = 6;
-  google.protobuf.Timestamp last_updated_at = 7;
-  repeated string updated_history = 8;
+  belifeline.models.v1.ExternalInformation external_information = 1;
 }
 
 message ExtInfoSetResponse {
@@ -82,17 +74,7 @@ message ExtInfoDeleteResponse {
 }
 
 message KoyoCreateRequest {
-  optional belifeline.models.v1.ULID koyo_id = 1;
-  string koyo_name = 2;
-  string koyo_description = 3;
-  repeated belifeline.models.v1.ULID need_external = 4;
-  map<string, string> koyo_params = 5;
-  repeated float koyo_scales = 6;
-  belifeline.models.v1.Version version = 7;
-  repeated belifeline.models.v1.Version version_history = 8;
-  string license = 9;
-  repeated string ext_licenses = 10;
-  belifeline.models.v1.DataType data_type = 11;
+  belifeline.models.v1.KoyoInformation koyo_information = 1;
 }
 
 message KoyoCreateResponse {
@@ -139,11 +121,6 @@ message KoyoListResponse {
 
 message ExtInfoGetRequest {
   belifeline.models.v1.ULID extinfo_id = 1;
-  optional belifeline.models.v1.MultiPolygon area = 3;
-  optional belifeline.models.v1.DateUntil until = 4;
-  optional belifeline.models.v1.DateUntil until_entry = 5;
-  map<string, string> params = 6;
-  optional float scale = 7;
 }
 
 message ExtInfoGetResponse {
@@ -151,13 +128,7 @@ message ExtInfoGetResponse {
 }
 
 message KoyoDataGetRequest {
-  belifeline.models.v1.ULID koyo_id = 1;
-  optional belifeline.models.v1.ULID koyo_data_id = 2;
-  optional belifeline.models.v1.MultiPolygon area = 3;
-  optional belifeline.models.v1.DateUntil until = 4;
-  optional belifeline.models.v1.DateUntil until_entry = 5;
-  map<string, string> params = 6;
-  optional float scale = 7;
+  belifeline.models.v1.ULID koyo_data_id = 1;
 }
 
 message KoyoDataGetResponse {
@@ -182,15 +153,6 @@ message ExtInfoUpdateNotificationResponse {
 
 message KoyoUpdateRequest {
   belifeline.models.v1.ULID koyo_id = 1;
-  optional string koyo_name = 2;
-  optional string koyo_description = 3;
-  repeated belifeline.models.v1.ULID need_external = 4;
-  map<string, string> koyo_params = 5;
-  repeated float koyo_scales = 6;
-  belifeline.models.v1.Version version = 7;
-  optional string license = 9;
-  repeated string ext_licenses = 10;
-  optional belifeline.models.v1.DataType data_type = 11;
 }
 
 message KoyoUpdateResponse {
