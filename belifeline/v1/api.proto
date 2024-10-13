@@ -29,7 +29,7 @@ message ClientSetRequest {
 }
 
 message ClientSetResponse {
-  belifeline.models.v1.ClientInformation client_data = 1;
+  belifeline.models.v1.ClientInformation client_information = 1;
 }
 
 message ClientListRequest {
@@ -37,7 +37,7 @@ message ClientListRequest {
 }
 
 message ClientListResponse {
-  repeated belifeline.models.v1.ClientInformation client_data_list = 1;
+  repeated belifeline.models.v1.ClientInformation client_information_list = 1;
 }
 
 message ClientDeleteRequest {
@@ -57,19 +57,19 @@ message ClientRevokeResponse {
   belifeline.models.v1.ApiKey api_key = 2;
 }
 
-message ExtInfoSetRequest {
+message ExternalInformationSetRequest {
   belifeline.models.v1.ExternalInformation external_information = 1;
 }
 
-message ExtInfoSetResponse {
+message ExternalInformationSetResponse {
   belifeline.models.v1.ExternalInformation external_information = 1;
 }
 
-message ExtInfoDeleteRequest {
+message ExternalInformationDeleteRequest {
   belifeline.models.v1.ULID extinfo_id = 1;
 }
 
-message ExtInfoDeleteResponse {
+message ExternalInformationDeleteResponse {
   belifeline.models.v1.ULID extinfo_id = 1;
 }
 
@@ -103,11 +103,11 @@ message KoyoApiRevokeResponse {
  * ProviderService
  */
 
-message ExtInfoListRequest {
+message ExternalInformationListRequest {
   int32 limit = 1;
 }
 
-message ExtInfoListResponse {
+message ExternalInformationListResponse {
   repeated belifeline.models.v1.ExternalInformation external_information_list = 1;
 }
 
@@ -119,11 +119,11 @@ message KoyoListResponse {
   repeated belifeline.models.v1.KoyoInformation koyo_information_list = 1;
 }
 
-message ExtInfoGetRequest {
+message ExternalInformationGetRequest {
   belifeline.models.v1.ULID extinfo_id = 1;
 }
 
-message ExtInfoGetResponse {
+message ExternalInformationGetResponse {
   bytes data = 1;
 }
 
@@ -136,14 +136,14 @@ message KoyoDataGetResponse {
 }
 
 /**
- * ExtInfoService
+ * ExternalInformationService
  */
 
-message ExtInfoUpdateNotificationRequest {
+message ExternalInformationUpdateNotificationRequest {
   belifeline.models.v1.ULID extinfo_id = 1;
 }
 
-message ExtInfoUpdateNotificationResponse {
+message ExternalInformationUpdateNotificationResponse {
   belifeline.models.v1.ULID extinfo_id = 1;
 }
 

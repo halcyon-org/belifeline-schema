@@ -15,7 +15,7 @@ message KoyoInformation {
   optional ULID koyo_id = 1;
   string koyo_name = 2;
   string koyo_description = 3; // Koyo's developers explain what this Koyo is all about
-  repeated ULID need_external = 4; // List of ExtInfo required for Koyo to work
+  repeated ULID need_external = 4; // List of ExternalInformation required for Koyo to work
   map<string, string> koyo_params = 5; // Koyo parameters and their default values.
   repeated float koyo_scales = 6; // List of Koyo scale (data resolution) (Area where data exists)
   repeated ULID koyo_data_ids = 7; // Koyo's data list
