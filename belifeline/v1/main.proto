@@ -50,7 +50,7 @@ service AdminService {
 
 /**
  * Service as an information provider provided by belifeline
- * Client (Client Information API Key), Admin (Admin API Key), Koyo (Koyo Information API Key), or ExtInfo (External Information API Key) authentication required
+ * Client (Client Information API Key) authentication is required
  */
 service ProviderService {
   // List all external information
@@ -65,7 +65,7 @@ service ProviderService {
 
 /**
  * Service that provides something for updating external information
- * Authentication of either Admin (Admin API Key) or ExtInfo (External Information API Key) is required.
+ * ExtInfo (External Information API Key) authentication is required.
  */
 service ExtInfoService {
   // rpc to inform kizuna that extinfo (external api and other information) has been updated
@@ -74,7 +74,7 @@ service ExtInfoService {
 
 /**
  * Koyo itself is a service for interacting with Kizuna
- * Authentication of either Admin (Admin API Key) or Koyo (Koyo Information API Key) is required.
+ * Koyo (Koyo Information API Key) authentication is required.
  */
 service KoyoService {
   // Update koyo information
