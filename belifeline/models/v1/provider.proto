@@ -8,14 +8,14 @@ import "google/protobuf/timestamp.proto";
 option go_package = "github.com/halcyon-org/kizuna/gen/belifeline/models/v1;modelsv1";
 
 /**
-  * Client Data
-  * ClientData is basic information about Client
+  * Client Information
+  * ClientInformation is basic information about Client
   */
-message ClientData {
+message ClientInformation {
   optional ULID client_id = 1;
   string username = 2;
   optional ApiKey api_key = 3;
   google.protobuf.Timestamp created_at = 4; // Immutable at the date and time the client is registered in the belifeline
   google.protobuf.Timestamp last_used_at = 5; // Time the client last used the belifeline
-  google.protobuf.Timestamp last_updated_at = 6; // Time the client data last updated
+  google.protobuf.Timestamp last_updated_at = 6; // Time the client information last updated
 }
