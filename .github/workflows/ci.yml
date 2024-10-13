@@ -8,10 +8,10 @@ jobs:
     timeout-minutes: 10
     needs:
       - buf-check
+      - buf-gen
     steps:
       - name: All status check
         run: echo "All status checks passed"
-        
 
   buf-check:
     runs-on: ubuntu-latest
@@ -21,3 +21,17 @@ jobs:
       - uses: bufbuild/buf-action@275c46df241e678db8e3ff3969ecb24b0b9001c5 # V1.0.1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+
+  buf-gen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - uses: bufbuild/buf-action@275c46df241e678db8e3ff3969ecb24b0b9001c5 # V1.0.1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          setup_only: true
+      - name: buf generate
+        run: |
+          buf generate
