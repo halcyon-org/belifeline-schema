@@ -29,7 +29,8 @@ message KoyoData {
   ULID koyo_data_id = 1;
   ULID koyo_id = 2;
   float koyo_scale = 3;
-  bytes content = 4;
-  google.protobuf.Timestamp entry_at = 5;
-  google.protobuf.Timestamp target_at = 6;
+  map<string, string> koyo_data_params = 4;
+  bytes content = 5;
+  google.protobuf.Timestamp entry_at = 6;
+  google.protobuf.Timestamp target_at = 7;
 }
