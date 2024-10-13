@@ -19,8 +19,9 @@ message ExternalInformation {
   string external_description = 3;
   string license = 4;
   string license_description = 5;
-  ApiKey api_key = 6;
-  google.protobuf.Timestamp first_entry_at = 7;
-  google.protobuf.Timestamp last_updated_at = 8;
-  repeated string updated_history = 9;
+  repeated ULID external_data_ids = 6;
+  ApiKey api_key = 7;
+  google.protobuf.Timestamp first_entry_at = 8;
+  google.protobuf.Timestamp last_updated_at = 9;
+  repeated string updated_history = 10;
 }
