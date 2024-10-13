@@ -19,7 +19,7 @@ service AdminService {
   rpc ExtInfoSet(ExtInfoSetRequest) returns (ExtInfoSetResponse) {}
   rpc ExtInfoDelete(ExtInfoDeleteRequest) returns (ExtInfoDeleteResponse) {}
 
-  rpc KoyoSet(KoyoSetRequest) returns (KoyoSetResponse) {}
+  rpc KoyoCreate(KoyoCreateRequest) returns (KoyoCreateResponse) {}
   rpc KoyoDelete(KoyoDeleteRequest) returns (KoyoDeleteResponse) {}
   rpc KoyoApiRevoke(KoyoApiRevokeRequest) returns (KoyoApiRevokeResponse) {}
 }
@@ -36,5 +36,6 @@ service ExtInfoService {
 }
 
 service KoyoService {
+  rpc KoyoUpdate(KoyoUpdateRequest) returns (KoyoUpdateResponse) {}
   rpc KoyoDataAdd(KoyoDataAddRequest) returns (KoyoDataAddResponse) {}
 }
