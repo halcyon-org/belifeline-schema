@@ -6,8 +6,8 @@ option go_package = "github.com/halcyon-org/kizuna/gen/belifeline/models/v1;mode
 
 // Common Types
 message DateUntil {
-  string before = 1;
-  string after = 2;
+  google.protobuf.Timestamp before = 1;
+  google.protobuf.Timestamp after = 2;
 }
 
 message ULID {
