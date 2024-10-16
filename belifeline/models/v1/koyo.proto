@@ -13,20 +13,20 @@ option go_package = "github.com/halcyon-org/kizuna/gen/belifeline/models/v1;mode
  */
 message KoyoInformation {
   optional ULID koyo_id = 1;
-  string koyo_name = 2;
-  string koyo_description = 3; // Koyo's developers explain what this Koyo is all about
+  optional string koyo_name = 2;
+  optional string koyo_description = 3; // Koyo's developers explain what this Koyo is all about
   repeated ULID need_external = 4; // List of ExternalInformation required for Koyo to work
   map<string, string> koyo_params = 5; // Koyo parameters and their default values.
   repeated float koyo_scales = 6; // List of Koyo scale (data resolution) (Area where data exists)
   repeated ULID koyo_data_ids = 7; // Koyo's data list
-  Version version = 8;
-  string license = 10; // Koyo's license type
+  optional Version version = 8;
+  optional string license = 10; // Koyo's license type
   repeated string ext_licenses = 11; // List of licenses on which Koyo depends
-  DataType data_type = 12; // Format of data returned by Koyo (in KoyoData)
+  optional DataType data_type = 12; // Format of data returned by Koyo (in KoyoData)
   optional ApiKey api_key = 13;
-  google.protobuf.Timestamp first_entry_at = 14; // Immutable at the date and time Koyo is registered in the belifeline
-  google.protobuf.Timestamp last_entry_at = 15; // Time koyo last added data
-  google.protobuf.Timestamp last_updated_at = 16; // Time koyo information last updated
+  optional google.protobuf.Timestamp first_entry_at = 14; // Immutable at the date and time Koyo is registered in the belifeline
+  optional google.protobuf.Timestamp last_entry_at = 15; // Time koyo last added data
+  optional google.protobuf.Timestamp last_updated_at = 16; // Time koyo information last updated
 }
 
 /**
@@ -35,10 +35,10 @@ message KoyoInformation {
  */
 message KoyoData {
   optional ULID koyo_data_id = 1;
-  ULID koyo_id = 2;
-  float koyo_scale = 3; // The scale used when generating data
+  optional ULID koyo_id = 2;
+  optional float koyo_scale = 3; // The scale used when generating data
   map<string, string> koyo_data_params = 4; // Parameters used when generating data
-  bytes content = 5; // Data content
-  google.protobuf.Timestamp entry_at = 6; // Time data was generated
-  google.protobuf.Timestamp target_at = 7; // Time data is targeted (external information daat time)
+  optional bytes content = 5; // Data content
+  optional google.protobuf.Timestamp entry_at = 6; // Time data was generated
+  optional google.protobuf.Timestamp target_at = 7; // Time data is targeted (external information daat time)
 }
