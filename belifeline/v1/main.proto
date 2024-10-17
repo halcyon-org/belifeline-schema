@@ -7,15 +7,14 @@ import "belifeline/v1/api.proto";
 option go_package = "github.com/halcyon-org/kizuna/gen/belifeline/v1;mainv1";
 
 /**
- * Services related to kizuna itself
+ * Health Check Service
  * No authentication is required and public access is always available
  */
-service ServerService {
-  /**
-   * Health check
-   * Returns the status message of the server
-   */
-  rpc Health(HealthRequest) returns (HealthResponse) {}
+service HealthService {
+  // Check the health of the service
+  rpc Check(CheckRequest) returns (CheckResponse);
+  // Watch the health of the service
+  rpc Watch(WatchRequest) returns (stream WatchResponse);
 }
 
 /**

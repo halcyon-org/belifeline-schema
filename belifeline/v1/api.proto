@@ -10,13 +10,30 @@ import "belifeline/models/v1/types.proto";
 option go_package = "github.com/halcyon-org/kizuna/gen/belifeline/v1;mainv1";
 
 /**
- * ServerService
+ * HealthService
  */
+enum ServingStatus {
+  SERVING_STATUS_UNSPECIFIED = 0;
+  SERVING_STATUS_UNKNOWN = 1;
+  SERVING_STATUS_SERVING = 2;
+  SERVING_STATUS_NOT_SERVING = 3;
+  SERVING_STATUS_SERVICE_UNKNOWN = 4; // Used only by the Watch method.
+}
 
-message HealthRequest {}
+message CheckRequest {
+  string service = 1;
+}
 
-message HealthResponse {
-  string status = 1;
+message CheckResponse {
+  ServingStatus status = 1;
+}
+
+message WatchRequest {
+  string service = 1;
+}
+
+message WatchResponse {
+  ServingStatus status = 1;
 }
 
 /**
