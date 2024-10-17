@@ -12,9 +12,9 @@ option go_package = "github.com/halcyon-org/kizuna/gen/belifeline/v1;mainv1";
  */
 service HealthService {
   // Check the health of the service
-  rpc Check(HealthCheckRequest) returns (HealthCheckResponse);
+  rpc Check(CheckRequest) returns (CheckResponse);
   // Watch the health of the service
-  rpc Watch(HealthCheckRequest) returns (stream HealthCheckResponse);
+  rpc Watch(WatchRequest) returns (stream WatchResponse);
 }
 
 /**
