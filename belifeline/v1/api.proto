@@ -169,7 +169,7 @@ message ExternalInformationUpdateNotificationResponse {
  */
 
 message KoyoUpdateRequest {
-  belifeline.models.v1.ULID koyo_id = 1;
+  belifeline.models.v1.KoyoInformation koyo_information = 1;
 }
 
 message KoyoUpdateResponse {
