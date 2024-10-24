@@ -181,5 +181,5 @@ message KoyoDataAddRequest {
 }
 
 message KoyoDataAddResponse {
-  belifeline.models.v1.ULID koyo_data = 1;
+  belifeline.models.v1.ULID koyo_data_id = 1;
 }
