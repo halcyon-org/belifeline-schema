@@ -39,7 +39,7 @@ enum DataType {
  */
 
 // API Key
-message ApiKey {
+message APIKey {
   string key = 1;
 }
 
