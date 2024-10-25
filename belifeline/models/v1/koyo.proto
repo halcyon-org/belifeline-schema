@@ -23,7 +23,7 @@ message KoyoInformation {
   optional string license = 10; // Koyo's license type
   repeated string ext_licenses = 11; // List of licenses on which Koyo depends
   optional DataType data_type = 12; // Format of data returned by Koyo (in KoyoData)
-  optional ApiKey api_key = 13;
+  optional APIKey api_key = 13;
   optional google.protobuf.Timestamp first_entry_at = 14; // Immutable at the date and time Koyo is registered in the belifeline
   optional google.protobuf.Timestamp last_entry_at = 15; // Time koyo last added data
   optional google.protobuf.Timestamp last_updated_at = 16; // Time koyo information last updated

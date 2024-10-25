@@ -44,7 +44,7 @@ service AdminService {
   // Delete a koyo
   rpc KoyoDelete(KoyoDeleteRequest) returns (KoyoDeleteResponse) {}
   // Revoke and renew the koyo's API key. The koyo's API key is automatically generated and returned
-  rpc KoyoApiRevoke(KoyoApiRevokeRequest) returns (KoyoApiRevokeResponse) {}
+  rpc KoyoAPIRevoke(KoyoAPIRevokeRequest) returns (KoyoAPIRevokeResponse) {}
 }
 
 /**
@@ -67,7 +67,7 @@ service ProviderService {
  * ExternalInformation (External Information API Key) authentication is required.
  */
 service ExternalInformationService {
-  // rpc to inform kizuna that extinfo (external api and other information) has been updated
+  // rpc to inform kizuna that extinfo (External API and other information) has been updated
   rpc ExternalInformationUpdateNotification(ExternalInformationUpdateNotificationRequest) returns (ExternalInformationUpdateNotificationResponse) {}
 }
 

@@ -71,7 +71,7 @@ message ClientRevokeRequest {
 
 message ClientRevokeResponse {
   belifeline.models.v1.ULID client_id = 1;
-  belifeline.models.v1.ApiKey api_key = 2;
+  belifeline.models.v1.APIKey api_key = 2;
 }
 
 message ExternalInformationSetRequest {
@@ -106,14 +106,14 @@ message KoyoDeleteResponse {
   belifeline.models.v1.ULID koyo_id = 1;
 }
 
-message KoyoApiRevokeRequest {
+message KoyoAPIRevokeRequest {
   belifeline.models.v1.ULID koyo_id = 1;
-  belifeline.models.v1.ApiKey api_key = 2;
+  belifeline.models.v1.APIKey api_key = 2;
 }
 
-message KoyoApiRevokeResponse {
+message KoyoAPIRevokeResponse {
   belifeline.models.v1.ULID koyo_id = 1;
-  belifeline.models.v1.ApiKey api_key = 2;
+  belifeline.models.v1.APIKey api_key = 2;
 }
 
 /**

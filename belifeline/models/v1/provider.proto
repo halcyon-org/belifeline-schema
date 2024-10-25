@@ -14,7 +14,7 @@ option go_package = "github.com/halcyon-org/kizuna/gen/belifeline/models/v1;mode
 message ClientInformation {
   optional ULID client_id = 1;
   optional string username = 2;
-  optional ApiKey api_key = 3;
+  optional APIKey api_key = 3;
   optional google.protobuf.Timestamp created_at = 4; // Immutable at the date and time the client is registered in the belifeline
   optional google.protobuf.Timestamp last_used_at = 5; // Time the client last used the belifeline
   optional google.protobuf.Timestamp last_updated_at = 6; // Time the client information last updated
