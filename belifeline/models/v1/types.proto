@@ -34,6 +34,13 @@ enum DataType {
   DATA_TYPE_JSON = 3;
 }
 
+// Format of Koyo content (in KoyoData)
+message Content {
+  Point point = 1;
+  bytes value = 2;
+  map<string, string> optional = 3;
+}
+
 /**
  * Auth types
  */

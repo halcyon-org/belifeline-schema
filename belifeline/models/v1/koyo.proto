@@ -38,7 +38,7 @@ message KoyoData {
   optional ULID koyo_id = 2;
   optional float koyo_scale = 3; // The scale used when generating data
   map<string, string> koyo_data_params = 4; // Parameters used when generating data
-  optional bytes content = 5; // Data content
+  repeated Content content = 5; // Data content
   optional google.protobuf.Timestamp entry_at = 6; // Time data was generated
   optional google.protobuf.Timestamp target_at = 7; // Time data is targeted (external information daat time)
 }
