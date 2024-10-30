@@ -12,7 +12,7 @@ option go_package = "github.com/halcyon-org/kizuna/gen/belifeline/models/v1;mode
  */
 message ExampleInfoExampleData {
   ULID example_data_id = 1;
-  MultiPolygon area = 2;
+  GeoPoint point = 2;
   bytes image = 3;
 }
 
