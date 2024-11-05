@@ -21,7 +21,7 @@ jobs:
     environment: production
     steps:
       - uses: actions/checkout@v4
-      - uses: bufbuild/buf-action@275c46df241e678db8e3ff3969ecb24b0b9001c5 # V1.0.1
+      - uses: bufbuild/buf-action@d5697c6563d51b0247005e9ef64e97277de3a8f5 # V1.0.1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           setup_only: true
